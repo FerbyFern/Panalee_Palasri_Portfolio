@@ -8,7 +8,8 @@ import Work from "../components/Work";
 import About from "../components/About";
 import Experience from "../components/Experience";
 import Process from "../components/Process";
-import Skills from "../components/Skills";
+import SkillsGrid from "../components/SkillsGrid";
+import Testimonials from "../components/Testimonials";
 import Achievements from "../components/Achievements";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -26,7 +27,7 @@ export default function Home() {
     document.addEventListener("mousemove", onMouseMove);
 
     const interactiveElements = document.querySelectorAll(
-      "a, .project-card, .process-step, .skill-row, .ach-card"
+      "a, .project-card, .process-step, .skill-row, .ach-card, .testimonial-card"
     );
 
     const onMouseEnter = () => cursor.classList.add("big");
@@ -75,7 +76,8 @@ export default function Home() {
       <About />
       <Experience />
       <Process />
-      <Skills />
+      <SkillsGrid />
+      <Testimonials />
       <Achievements />
       <Contact />
       <Footer />

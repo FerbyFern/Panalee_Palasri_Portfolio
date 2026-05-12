@@ -1,40 +1,30 @@
-export default function Marquee() {
+import React from 'react';
+
+const Marquee: React.FC = () => {
+  const items = [
+    "User Research", "Wireframing", "Prototyping", "Visual Design",
+    "Design Systems", "Accessibility", "Information Architecture",
+    "User Interviews", "Usability Testing"
+  ];
+
   return (
     <div className="marquee-wrap">
       <div className="marquee-track">
-        <span className="marquee-item">User Research</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Wireframing & Prototyping</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Design Systems</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Usability Testing</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Figma</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Accessibility Design</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Information Architecture</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Responsive & Mobile</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">User Research</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Wireframing & Prototyping</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Design Systems</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Usability Testing</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Figma</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Accessibility Design</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Information Architecture</span>
-        <span className="marquee-dot">·</span>
-        <span className="marquee-item">Responsive & Mobile</span>
-        <span className="marquee-dot">·</span>
+        {/* First set */}
+        {items.map((item, index) => (
+          <span key={`m1-${index}`} className="marquee-item">
+            {item} <span className="marquee-dot">●</span>
+          </span>
+        ))}
+        {/* Second set for infinite scroll */}
+        {items.map((item, index) => (
+          <span key={`m2-${index}`} className="marquee-item">
+            {item} <span className="marquee-dot">●</span>
+          </span>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default Marquee;

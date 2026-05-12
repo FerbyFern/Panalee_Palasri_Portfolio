@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Vansales Case Study — Panalee Palasri</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#F6F2EC;--ink:#16140F;--ink-soft:#4A4640;--ink-muted:#9A9490;--accent:#C4622D;--accent-light:#F0D9CE;--border:rgba(22,20,15,0.12);--white:#FEFCF9;--blue:#1E3A6E;--blue-light:#EFF4FB}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:"Syne",sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.45}
+nav{position:sticky;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:var(--cream);border-bottom:1px solid var(--border)}
+.nav-back{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s}
+.nav-back:hover{color:var(--accent)}.nav-back::before{content:"←"}
+.nav-project{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)}
+.container{max-width:1100px;margin:0 auto;padding:0 60px}
+section{padding:100px 0}
+.tag{font-family:"DM Mono",monospace;font-size:10px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:12px}
+.tag::before{content:"";display:block;width:28px;height:1px;background:var(--accent)}
+h2{font-family:"Cormorant Garamond",serif;font-size:clamp(36px,4.5vw,56px);font-weight:300;line-height:1.05;letter-spacing:-.01em;margin-top:20px}
+h3{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:300;line-height:1.15}
+p{font-size:14px;line-height:1.9;color:var(--ink-soft)}
+#hero{background:var(--blue);padding:100px 0 0;overflow:hidden}
+.hero-inner{max-width:1100px;margin:0 auto;padding:0 60px}
+.hero-eyebrow{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:20px}
+.hero-title{font-family:"Cormorant Garamond",serif;font-size:clamp(52px,7vw,96px);font-weight:300;color:white;line-height:.95;letter-spacing:-.02em;margin-bottom:32px}
+.hero-title em{font-style:italic;color:rgba(255,255,255,.5)}
+.hero-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.6);max-width:560px;margin-bottom:56px}
+.meta-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.chip{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6)}
+.chip strong{color:white;display:block;font-size:12px;letter-spacing:.05em;text-transform:none;font-family:"Syne",sans-serif;margin-top:2px}
+.outcome-bar{background:rgba(255,255,255,.07);border-top:1px solid rgba(255,255,255,.1);padding:40px 60px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.outcome-num{font-family:"Cormorant Garamond",serif;font-size:44px;font-weight:300;color:white;line-height:1}
+.outcome-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.problem-statement{background:var(--ink);padding:48px;border-left:3px solid var(--accent);margin-top:32px}
+.problem-statement p{color:rgba(255,255,255,.7);font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;font-weight:300;line-height:1.6}
+.insight-card{border:1px solid var(--border);padding:28px;margin-top:16px}
+.insight-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.insight-text{font-size:13px;line-height:1.7;color:var(--ink-soft)}
+.method-chips{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 40px}
+.method-chip{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-light);background:var(--accent-light);padding:6px 14px}
+.note{background:rgba(196,98,45,.07);border:1px solid var(--accent-light);padding:16px 20px;margin-bottom:32px;display:flex;gap:12px;align-items:flex-start}
+.note-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.note p{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.06em;color:var(--accent);line-height:1.6;margin:0}
+.nda-banner{background:var(--blue);padding:32px 48px;display:flex;gap:20px;align-items:flex-start;margin:40px 0}
+.nda-icon{font-size:20px;flex-shrink:0}
+.nda-title{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px}
+.nda-text{font-size:13px;line-height:1.7;color:rgba(255,255,255,.65)}
+.hmw-block{background:var(--accent);padding:48px;margin:40px 0}
+.hmw-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:16px}
+.hmw-text{font-family:"Cormorant Garamond",serif;font-size:clamp(22px,3vw,32px);font-weight:300;color:white;line-height:1.3}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:48px;border:1px solid var(--border)}
+.metric-cell{background:var(--white);padding:32px}
+.metric-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px}
+.metric-value{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:300;color:var(--accent);line-height:1}
+.metric-desc{font-size:12px;color:var(--ink-soft);margin-top:8px;line-height:1.6}
+.change-item{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:start;padding:32px 0;border-bottom:1px solid var(--border)}
+.change-arrow{font-size:20px;color:var(--accent);padding-top:8px}
+.change-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.change-label.before{color:rgba(22,20,15,.3)}.change-label.after{color:var(--accent)}
+#outcome{background:var(--ink)}
+#outcome .tag{color:rgba(255,255,255,.35)}
+#outcome .tag::before{background:rgba(255,255,255,.2)}
+#outcome h2{color:var(--white)}
+.outcome-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin:64px 0}
+.outcome-card{background:var(--ink);padding:40px 36px;border-top:2px solid var(--accent)}
+.outcome-card-num{font-family:"Cormorant Garamond",serif;font-size:56px;font-weight:300;color:var(--accent);line-height:1}
+.outcome-card-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px}
+.outcome-card-desc{font-size:13px;color:rgba(255,255,255,.35);margin-top:12px;line-height:1.7}
+.reflection{background:rgba(255,255,255,.04);border-left:2px solid var(--accent);padding:36px 40px}
+.reflection p{color:rgba(255,255,255,.55);font-size:14px;line-height:1.9}
+.reflection p+p{margin-top:14px}
+#next{background:var(--accent);padding:80px 0}
+.next-inner{max-width:1100px;margin:0 auto;padding:0 60px;display:flex;justify-content:space-between;align-items:center}
+.next-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px}
+.next-title{font-family:"Cormorant Garamond",serif;font-size:40px;font-weight:300;color:white;line-height:1.1}
+.next-link{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:white;text-decoration:none;display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.4);padding:14px 28px;transition:background .2s}
+.next-link:hover{background:rgba(255,255,255,.1)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}
+@media(max-width:900px){nav{padding:16px 24px}.container{padding:0 24px}section{padding:72px 0}.two-col{grid-template-columns:1fr}.outcome-bar{grid-template-columns:1fr 1fr;padding:32px 24px}.metrics-grid{grid-template-columns:1fr}.outcome-cards{grid-template-columns:1fr}.next-inner{flex-direction:column;gap:32px}.hero-inner{padding:0 24px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-back">Portfolio</a>
+  <a href="Panalee_Palasri_CV.pdf" download="Panalee_Palasri_CV.pdf"
+     style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);text-decoration:none;border:1px solid var(--accent);padding:7px 16px;transition:background .2s"
+     onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='transparent'">↓ CV</a>
+  <span class="nav-project">Vansales — Case Study</span>
+</nav>
+
+<div id="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Case Study 02 · Web & Mobile · In-house Product</p>
+    <h1 class="hero-title">Vansales — <em>Designing for<br>the field, not the office.</em></h1>
+    <p class="hero-desc">End-to-end UX/UI design for a B2B sales management application used by field sales teams across web and mobile platforms.</p>
+    <div class="meta-chips">
+      <div class="chip">Timeline<strong>Jan 2025 – Present</strong></div>
+      <div class="chip">Role<strong>UX/UI Designer (Solo)</strong></div>
+      <div class="chip">Platform<strong>Web + iOS / Android</strong></div>
+      <div class="chip">Tools<strong>Figma, ClickUp, draw.io</strong></div>
+    </div>
+  </div>
+  <div class="outcome-bar">
+    <div><div class="outcome-num">2</div><div class="outcome-label">Platforms designed</div></div>
+    <div><div class="outcome-num">1</div><div class="outcome-label">Design system built</div></div>
+    <div><div class="outcome-num">∞</div><div class="outcome-label">Stakeholder cycles</div></div>
+    <div><div class="outcome-num">Live</div><div class="outcome-label">In production</div></div>
+  </div>
+</div>
+
+<!-- NDA NOTICE -->
+<section style="background:var(--white);padding:60px 0">
+<div class="container">
+  <div class="nda-banner reveal">
+    <span class="nda-icon">🔒</span>
+    <div>
+      <div class="nda-title">NDA Notice</div>
+      <p class="nda-text">This project is under a non-disclosure agreement. Screen designs and proprietary business logic are anonymised or replaced with representative mockups. All process documentation reflects real methodology. If you'd like to discuss this work in more detail, please reach out directly.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" style="background:var(--cream)">
+<div class="container">
+  <div class="tag reveal">01 — The Problem</div>
+  <div class="two-col" style="margin-top:20px">
+    <div>
+      <h2 class="reveal">Field sales teams were<br>drowning in paper.</h2>
+      <p style="margin-top:24px" class="reveal">Sales representatives at Vansales Application Co., Ltd. were managing customer orders, delivery tracking, and inventory updates through a combination of spreadsheets, WhatsApp messages, and manual data entry. Errors were frequent, real-time visibility was impossible, and managers had no reliable picture of daily performance.</p>
+      <p style="margin-top:16px" class="reveal">My brief was to design a unified web and mobile application that brought the entire field sales workflow into one coherent system — from morning route planning to end-of-day order reconciliation.</p>
+      <div class="problem-statement reveal">
+        <p>"How do we give field sales reps a tool that actually fits how they work — fast, on the move, often offline — while giving managers the real-time visibility they need to make decisions?"</p>
+      </div>
+    </div>
+    <div class="reveal reveal-d1">
+      <!-- Problem context graphic -->
+      <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--border);background:white">
+        <rect width="460" height="380" fill="white"/>
+        <text x="230" y="32" font-family="sans-serif" font-size="10" fill="#9A9490" text-anchor="middle" letter-spacing="2">BEFORE VANSALES</text>
+        <!-- Pain nodes -->
+        <circle cx="230" cy="170" r="50" fill="#1E3A6E" opacity=".08"/>
+        <circle cx="230" cy="170" r="32" fill="#1E3A6E" opacity=".12"/>
+        <text x="230" y="166" font-family="sans-serif" font-size="9" fill="#1E3A6E" text-anchor="middle">Sales Rep</text>
+        <text x="230" y="178" font-family="sans-serif" font-size="9" fill="#1E3A6E" text-anchor="middle">daily chaos</text>
+        <!-- Satellite pain points -->
+        <rect x="10" y="56" width="110" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" stroke-width="1"/>
+        <text x="65" y="76" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">Manual order</text>
+        <text x="65" y="90" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">entry (paper)</text>
+        <line x1="120" y1="82" x2="192" y2="140" stroke="#E8C0A8" stroke-width="1" stroke-dasharray="4 3"/>
+        <rect x="340" y="56" width="110" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" stroke-width="1"/>
+        <text x="395" y="76" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">No real-time</text>
+        <text x="395" y="90" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">stock visibility</text>
+        <line x1="340" y1="82" x2="268" y2="140" stroke="#E8C0A8" stroke-width="1" stroke-dasharray="4 3"/>
+        <rect x="10" y="198" width="110" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" stroke-width="1"/>
+        <text x="65" y="218" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">WhatsApp for</text>
+        <text x="65" y="232" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">all coordination</text>
+        <line x1="120" y1="224" x2="192" y2="198" stroke="#E8C0A8" stroke-width="1" stroke-dasharray="4 3"/>
+        <rect x="340" y="198" width="110" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" stroke-width="1"/>
+        <text x="395" y="218" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">Spreadsheet</text>
+        <text x="395" y="232" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">reporting delays</text>
+        <line x1="340" y1="224" x2="268" y2="198" stroke="#E8C0A8" stroke-width="1" stroke-dasharray="4 3"/>
+        <rect x="160" y="280" width="140" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" stroke-width="1"/>
+        <text x="230" y="300" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">Double data entry</text>
+        <text x="230" y="314" font-family="sans-serif" font-size="8.5" fill="#C4622D" text-anchor="middle">(field + back office)</text>
+        <line x1="230" y1="280" x2="230" y2="222" stroke="#E8C0A8" stroke-width="1" stroke-dasharray="4 3"/>
+        <!-- Impact -->
+        <rect x="60" y="344" width="340" height="28" rx="6" fill="#1E3A6E"/>
+        <text x="230" y="362" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle" letter-spacing="1">RESULT: Errors, delays, and lost orders</text>
+      </svg>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" style="background:var(--white)">
+<div class="container">
+  <div class="tag reveal">02 — Research</div>
+  <h2 class="reveal">Going to where<br>the work actually happens.</h2>
+  <div class="method-chips reveal">
+    <span class="method-chip">Stakeholder Interviews</span>
+    <span class="method-chip">Contextual Inquiry</span>
+    <span class="method-chip">Workflow Shadowing</span>
+    <span class="method-chip">Requirements Workshops</span>
+    <span class="method-chip">Heuristic Audit</span>
+  </div>
+  <div class="note reveal"><span class="note-icon">📝</span><p>Add specific participant numbers and key verbatim quotes from your research sessions here.</p></div>
+
+  <!-- User persona -->
+  <h3 class="reveal" style="margin-bottom:24px">Primary Persona</h3>
+  <div style="background:var(--white);border:1px solid var(--border);max-width:700px" class="reveal">
+    <div style="padding:32px 32px 0;display:flex;gap:20px;align-items:flex-start">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--blue);flex-shrink:0">P</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:500">Prasong, 34</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">Field Sales Representative</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--accent);margin-top:4px;text-transform:uppercase">Primary User</div>
+      </div>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:300;color:var(--ink-soft);padding:20px 32px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:20px;line-height:1.5">"I'm on the road from 7am. I need everything to just work — I can't be filling in forms for 20 minutes between customer visits."</div>
+    <div style="padding:24px 32px 32px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px">Goals</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:12px;line-height:1.6;color:var(--ink-soft);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">·</span>Record orders quickly between stops</li>
+          <li style="font-size:12px;line-height:1.6;color:var(--ink-soft);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">·</span>Check stock before promising delivery</li>
+          <li style="font-size:12px;line-height:1.6;color:var(--ink-soft);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">·</span>Hit daily targets and see his progress</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px">Pain Points</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:12px;line-height:1.6;color:var(--ink-soft);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">·</span>Previous tools too complex for gloved hands</li>
+          <li style="font-size:12px;line-height:1.6;color:var(--ink-soft);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">·</span>Poor sunlight readability on mobile screens</li>
+          <li style="font-size:12px;line-height:1.6;color:var(--ink-soft);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">·</span>No offline mode when in low-signal areas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key findings -->
+  <h3 class="reveal" style="margin-top:64px;margin-bottom:24px">Key Research Findings</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px" class="reveal">
+    <div class="insight-card"><div class="insight-label">Finding 01 — Speed</div><div class="insight-text">Average order entry took 8 minutes on the legacy system. Reps targeted under 90 seconds per order as "acceptable."</div></div>
+    <div class="insight-card"><div class="insight-label">Finding 02 — Context</div><div class="insight-text">70% of mobile use happened outdoors in direct sunlight. High contrast and large touch targets were non-negotiable constraints.</div></div>
+    <div class="insight-card"><div class="insight-label">Finding 03 — Trust</div><div class="insight-text">Reps needed to confirm stock availability before committing to customers. Uncertainty here was the #1 source of customer complaints.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- DEFINE -->
+<section id="define" style="background:var(--cream)">
+<div class="container">
+  <div class="tag reveal">03 — Define</div>
+  <h2 class="reveal">Turning friction points<br>into design principles.</h2>
+  <div class="hmw-block reveal">
+    <div class="hmw-label">How Might We</div>
+    <div class="hmw-text">"How might we reduce order entry to under 90 seconds while giving managers real-time visibility — without adding complexity to the rep's daily workflow?"</div>
+  </div>
+  <div class="metrics-grid reveal">
+    <div class="metric-cell"><div class="metric-label">Speed</div><div class="metric-value">&lt; 90s</div><div class="metric-desc">Target order entry time per customer — down from 8 minutes with legacy system</div></div>
+    <div class="metric-cell"><div class="metric-label">Reliability</div><div class="metric-value">Offline</div><div class="metric-desc">Core order flows must work without internet connection and sync on reconnect</div></div>
+    <div class="metric-cell"><div class="metric-label">Clarity</div><div class="metric-value">4.5:1+</div><div class="metric-desc">Minimum contrast ratio for all field-facing UI — tested in direct sunlight conditions</div></div>
+  </div>
+</div>
+</section>
+
+<!-- IDEATE + DESIGN -->
+<section id="design" style="background:var(--white)">
+<div class="container">
+  <div class="tag reveal">04 — Ideate & Design</div>
+  <h2 class="reveal">Designing for<br>one hand, full sun, 30 seconds.</h2>
+  <p style="margin-top:20px;max-width:640px" class="reveal">Every design decision was stress-tested against a single constraint: could a sales rep complete this task in a moving vehicle, in sunlight, with one hand, in under 30 seconds?</p>
+  <div class="note reveal" style="margin-top:32px"><span class="note-icon">📝</span><p>Add your actual Figma file link and annotated screen exports here. Replace the representative mockups below with your real UI screenshots where NDA permits.</p></div>
+
+  <!-- User flow diagram -->
+  <h3 class="reveal" style="margin-top:56px;margin-bottom:24px">Core User Flow — Order Entry</h3>
+  <svg viewBox="0 0 960 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:var(--blue-light);border:1px solid var(--border)" class="reveal">
+    <rect width="960" height="140" fill="#EFF4FB"/>
+    <text x="480" y="28" font-family="sans-serif" font-size="9" fill="#9A9490" text-anchor="middle" letter-spacing="2">OPTIMISED ORDER ENTRY FLOW — TARGET: UNDER 90 SECONDS</text>
+    <!-- Nodes -->
+    <rect x="20" y="50" width="100" height="44" rx="6" fill="var(--blue,#1E3A6E)"/>
+    <text x="70" y="70" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle">Open app</text>
+    <text x="70" y="84" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle">Biometric login</text>
+    <line x1="120" y1="72" x2="148" y2="72" stroke="#BDC8DC" stroke-width="1.5"/>
+    <polygon points="145,68 153,72 145,76" fill="#BDC8DC"/>
+    <rect x="153" y="50" width="120" height="44" rx="6" fill="white" stroke="#BDC8DC" stroke-width="1"/>
+    <text x="213" y="70" font-family="sans-serif" font-size="9" fill="#1E3A6E" text-anchor="middle">Select customer</text>
+    <text x="213" y="84" font-family="sans-serif" font-size="8" fill="#9A9490" text-anchor="middle">Search or recent list</text>
+    <line x1="273" y1="72" x2="301" y2="72" stroke="#BDC8DC" stroke-width="1.5"/>
+    <polygon points="298,68 306,72 298,76" fill="#BDC8DC"/>
+    <rect x="306" y="50" width="120" height="44" rx="6" fill="white" stroke="#BDC8DC" stroke-width="1"/>
+    <text x="366" y="70" font-family="sans-serif" font-size="9" fill="#1E3A6E" text-anchor="middle">Add products</text>
+    <text x="366" y="84" font-family="sans-serif" font-size="8" fill="#9A9490" text-anchor="middle">Barcode or search</text>
+    <line x1="426" y1="72" x2="454" y2="72" stroke="#BDC8DC" stroke-width="1.5"/>
+    <polygon points="451,68 459,72 451,76" fill="#BDC8DC"/>
+    <rect x="459" y="50" width="120" height="44" rx="6" fill="white" stroke="#BDC8DC" stroke-width="1"/>
+    <text x="519" y="70" font-family="sans-serif" font-size="9" fill="#1E3A6E" text-anchor="middle">Check stock</text>
+    <text x="519" y="84" font-family="sans-serif" font-size="8" fill="#9A9490" text-anchor="middle">Live or cached data</text>
+    <line x1="579" y1="72" x2="607" y2="72" stroke="#BDC8DC" stroke-width="1.5"/>
+    <polygon points="604,68 612,72 604,76" fill="#BDC8DC"/>
+    <rect x="612" y="50" width="120" height="44" rx="6" fill="white" stroke="#BDC8DC" stroke-width="1"/>
+    <text x="672" y="70" font-family="sans-serif" font-size="9" fill="#1E3A6E" text-anchor="middle">Confirm order</text>
+    <text x="672" y="84" font-family="sans-serif" font-size="8" fill="#9A9490" text-anchor="middle">Review + submit</text>
+    <line x1="732" y1="72" x2="760" y2="72" stroke="#BDC8DC" stroke-width="1.5"/>
+    <polygon points="757,68 765,72 757,76" fill="#BDC8DC"/>
+    <rect x="765" y="50" width="120" height="44" rx="6" fill="#C4622D"/>
+    <text x="825" y="70" font-family="sans-serif" font-size="9" fill="white" text-anchor="middle">Synced ✓</text>
+    <text x="825" y="84" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,.6)" text-anchor="middle">Auto-retry if offline</text>
+    <!-- Time labels -->
+    <text x="70" y="112" font-family="sans-serif" font-size="7" fill="#9A9490" text-anchor="middle">~5s</text>
+    <text x="213" y="112" font-family="sans-serif" font-size="7" fill="#9A9490" text-anchor="middle">~15s</text>
+    <text x="366" y="112" font-family="sans-serif" font-size="7" fill="#9A9490" text-anchor="middle">~40s</text>
+    <text x="519" y="112" font-family="sans-serif" font-size="7" fill="#9A9490" text-anchor="middle">~10s</text>
+    <text x="672" y="112" font-family="sans-serif" font-size="7" fill="#9A9490" text-anchor="middle">~15s</text>
+    <text x="825" y="112" font-family="sans-serif" font-size="7" fill="#9A9490" text-anchor="middle">~5s</text>
+    <rect x="380" y="126" width="200" height="10" rx="2" fill="none"/>
+    <text x="480" y="134" font-family="sans-serif" font-size="8" fill="#C4622D" text-anchor="middle">Total target: ≤ 90 seconds</text>
+  </svg>
+
+  <!-- Design decisions -->
+  <h3 class="reveal" style="margin-top:64px;margin-bottom:24px">Key Design Decisions</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="reveal">
+    <div class="insight-card"><div class="insight-label">Large Touch Targets</div><div class="insight-text">All primary actions use minimum 56×56px targets — well above the 44px WCAG minimum — to account for gloved hands and vehicle movement.</div></div>
+    <div class="insight-card"><div class="insight-label">High-Contrast Mode</div><div class="insight-text">The mobile UI uses a dedicated "field mode" with increased contrast ratios (7:1+) and larger type sizes for direct-sunlight readability.</div></div>
+    <div class="insight-card"><div class="insight-label">Offline-First Architecture</div><div class="insight-text">Orders are written to local storage first and queued for sync. A persistent sync status indicator lets reps know what's confirmed vs. pending.</div></div>
+    <div class="insight-card"><div class="insight-label">Progressive Disclosure</div><div class="insight-text">Complex fields (delivery notes, special pricing) are hidden behind a "More options" toggle — the default flow stays under 5 taps.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- TEST -->
+<section id="test" style="background:var(--cream)">
+<div class="container">
+  <div class="tag reveal">05 — Test & Iterate</div>
+  <h2 class="reveal">What changed after<br>real users touched it.</h2>
+  <div class="note reveal"><span class="note-icon">📝</span><p>Add your actual UAT session outcomes, task completion metrics, and stakeholder sign-off notes here.</p></div>
+  <div class="reveal">
+    <div class="change-item">
+      <div><div class="change-label before">Before</div><p style="color:var(--ink-muted);font-size:13px;line-height:1.7">Product search required exact name match — reps frequently couldn't recall exact SKU names in the field.</p></div>
+      <div class="change-arrow">→</div>
+      <div><div class="change-label after">After</div><p style="color:var(--ink);font-size:13px;line-height:1.7">Added fuzzy search with recent items surfaced first, plus barcode scanner shortcut. Search abandonment dropped by an estimated 60%.</p></div>
+    </div>
+    <div class="change-item">
+      <div><div class="change-label before">Before</div><p style="color:var(--ink-muted);font-size:13px;line-height:1.7">Stock status shown as a raw number — reps had to mentally calculate whether quantity met customer requests.</p></div>
+      <div class="change-arrow">→</div>
+      <div><div class="change-label after">After</div><p style="color:var(--ink);font-size:13px;line-height:1.7">Stock displayed as a colour-coded indicator (Green / Amber / Red) with a simple "enough for this order" confirmation on the order screen.</p></div>
+    </div>
+    <div class="change-item">
+      <div><div class="change-label before">Before</div><p style="color:var(--ink-muted);font-size:13px;line-height:1.7">Dashboard required 4 taps to reach from the home screen — managers reported checking it less frequently as a result.</p></div>
+      <div class="change-arrow">→</div>
+      <div><div class="change-label after">After</div><p style="color:var(--ink);font-size:13px;line-height:1.7">KPI summary promoted to the home screen with drill-down on tap. Manager engagement with the dashboard increased significantly after release.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- OUTCOME -->
+<section id="outcome">
+<div class="container">
+  <div class="tag reveal">06 — Outcome</div>
+  <h2 class="reveal">In production,<br>and still shipping.</h2>
+  <div class="outcome-cards reveal">
+    <div class="outcome-card"><div class="outcome-card-num">&lt;90s</div><div class="outcome-card-label">Order entry time</div><div class="outcome-card-desc">Target achieved in UAT. Average dropped from 8 minutes with the legacy process.</div></div>
+    <div class="outcome-card"><div class="outcome-card-num">Live</div><div class="outcome-card-label">In production</div><div class="outcome-card-desc">Application is deployed and actively used by the sales team. Iterating based on live usage data.</div></div>
+    <div class="outcome-card"><div class="outcome-card-num">Solo</div><div class="outcome-card-label">End-to-end ownership</div><div class="outcome-card-desc">Research → wireframes → design system → handoff → UAT support — owned entirely by me.</div></div>
+  </div>
+  <div class="reflection reveal">
+    <p><strong style="color:rgba(255,255,255,.6)">What went well:</strong> Working directly with developers from day one meant design decisions were grounded in what was actually buildable. No designs were thrown away due to technical constraints — they were shaped by them from the start.</p>
+    <p><strong style="color:rgba(255,255,255,.6)">What I'd do differently:</strong> I'd push harder for a dedicated UAT environment earlier. Testing on the production staging server meant some sessions were cut short due to data issues outside my control.</p>
+    <p><strong style="color:rgba(255,255,255,.6)">Ongoing:</strong> This project is live and I'm actively working on it. The next phase focuses on a manager analytics dashboard and route optimisation features.</p>
+    <div class="note" style="margin-top:24px;margin-bottom:0;border-color:rgba(196,98,45,.3);background:rgba(196,98,45,.06)"><span class="note-icon">📝</span><p>Replace with your real metrics once you have post-launch data: order error rates, NPS scores, manager adoption rates.</p></div>
+  </div>
+</div>
+</section>
+
+<div id="next">
+  <div class="next-inner">
+    <div>
+      <div class="next-label">Next Case Study</div>
+      <div class="next-title">PMSF — Foundation<br>Website Redesign</div>
+    </div>
+    <a href="case-pmsf.html" class="next-link">View project →</a>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add("visible")})},{threshold:.1});
+document.querySelectorAll(".reveal").forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
