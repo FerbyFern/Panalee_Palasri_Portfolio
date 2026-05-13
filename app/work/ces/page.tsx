@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import CaseStudyHero, { CaseStudyPreview } from "../../../components/CaseStudyHero";
 
 export default function CESCaseStudy() {
   useEffect(() => {
@@ -35,55 +36,44 @@ export default function CESCaseStudy() {
     <div className="cs-page">
       <nav className="cs-nav">
         <Link href="/" className="cs-back">← Back to Portfolio</Link>
-        <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '11px', color: 'var(--ink-muted)' }}>
+        <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)' }}>
           CES Gold Shop — Case Study
         </span>
       </nav>
 
       {/* HERO — dark brand colour */}
-      <section className="cs-hero cs-hero-dark" style={{ background: '#16140F' }}>
-        <div className="cs-hero-inner">
-          <div className="cs-eyebrow reveal">Case Study 04 · Enterprise System · Vansales Application Co., Ltd.</div>
-          <h1 className="cs-title reveal reveal-delay-1">
-            CES — Designing for<br />
-            <em style={{ color: '#C9A84C' }}>gold, speed,<br />and zero margin for error.</em>
-          </h1>
-          <p className="cs-subtitle reveal reveal-delay-2">
-            End-to-end UX/UI design of the Chiab Enterprise System — a 12-module gold trading platform
-            covering price management, buy/sell transactions, Deal/Ticket settlement, NOP tracking,
-            container inventory, and financial reporting.
-          </p>
-
-          <div className="cs-chips reveal reveal-delay-2">
-            {[
-              { label: 'Timeline', value: 'Jan 2025 – Present' },
-              { label: 'Role', value: 'UX/UI Designer (Solo)' },
-              { label: 'Client', value: 'Chiab Seng Heng' },
-              { label: 'Platform', value: 'Web (Desktop + Tablet)' },
-              { label: 'Spec', value: 'FSD v1.1 · 139 pages' },
-            ].map((m) => (
-              <div key={m.label} className="cs-chip">
-                <strong>{m.value}</strong>
-                {m.label}
-              </div>
-            ))}
-          </div>
-
-          <div className="cs-outcome-bar reveal">
-            {[
-              { num: '12', label: 'System modules' },
-              { num: '9', label: 'User roles designed for' },
-              { num: '139', label: 'Pages of FSD studied' },
-              { num: 'Live', label: 'In production' },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="cs-outcome-bar-num">{s.num}</div>
-                <div className="cs-outcome-bar-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CaseStudyHero
+        background="#16140F"
+        eyebrow="Case Study 04 · Enterprise System · Vansales Application Co., Ltd."
+        title={<>CES — Designing for<br /><em style={{ color: '#C9A84C' }}>gold, speed,<br />and zero margin for error.</em></>}
+        subtitle="End-to-end UX/UI design of the Chiab Enterprise System — a 12-module gold trading platform covering price management, buy/sell transactions, Deal/Ticket settlement, NOP tracking, container inventory, and financial reporting."
+        chips={[
+          { label: 'Timeline', value: 'Jan 2025 – Present' },
+          { label: 'Role', value: 'UX/UI Designer (Solo)' },
+          { label: 'Client', value: 'Chiab Seng Heng' },
+          { label: 'Platform', value: 'Web (Desktop + Tablet)' },
+          { label: 'Spec', value: 'FSD v1.1 · 139 pages' },
+        ]}
+        stats={[
+          { num: '12', label: 'System modules' },
+          { num: '9', label: 'User roles designed for' },
+          { num: '139', label: 'Pages of FSD studied' },
+          { num: 'Live', label: 'In production' },
+        ]}
+        media={
+          <CaseStudyPreview
+            url="ces.goldshop.local"
+            accent="#C9A84C"
+            title="Gold trading dashboard"
+            subtitle="Live pricing, settlement states, and role-aware modules."
+            cards={[
+              { label: 'Modules', value: '12' },
+              { label: 'Roles', value: '9' },
+              { label: 'Status', value: 'Live' },
+            ]}
+          />
+        }
+      />
 
       {/* NDA NOTICE */}
       <section className="cs-section" style={{ background: 'var(--white)', paddingTop: '60px', paddingBottom: '60px' }}>
@@ -209,8 +199,8 @@ export default function CESCaseStudy() {
           ].map((m) => (
             <div key={m.label} className="cs-metric">
               <div className="cs-metric-label">{m.label}</div>
-              <div className="cs-metric-value" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '36px', fontWeight: 300, color: '#C9A84C', lineHeight: 1 }}>{m.val}</div>
-              <p style={{ fontSize: '12px', color: 'var(--ink-soft)', marginTop: '8px', lineHeight: 1.6 }}>{m.desc}</p>
+              <div className="cs-metric-value" style={{ fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-36)', fontWeight: 300, color: '#C9A84C', lineHeight: 1 }}>{m.val}</div>
+              <p style={{ fontSize: 'var(--fs-12)', color: 'var(--ink-soft)', marginTop: '8px', lineHeight: 1.6 }}>{m.desc}</p>
             </div>
           ))}
         </div>
@@ -242,8 +232,8 @@ export default function CESCaseStudy() {
           ].map((m) => (
             <div key={m.mod} className="cs-domain-card">
               <div className="cs-domain-label" style={{ color: '#C9A84C' }}>Module {m.mod}</div>
-              <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '14px', fontWeight: 500, color: 'var(--ink)', marginBottom: '8px' }}>{m.name}</div>
-              <p className="cs-domain-body" style={{ fontSize: '11px' }}>{m.desc}</p>
+              <div style={{ fontFamily: "var(--font-body), sans-serif", fontSize: 'var(--fs-14)', fontWeight: 500, color: 'var(--ink)', marginBottom: '8px' }}>{m.name}</div>
+              <p className="cs-domain-body" style={{ fontSize: 'var(--fs-11)' }}>{m.desc}</p>
             </div>
           ))}
         </div>

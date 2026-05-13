@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Marquee from "../components/Marquee";
-import Work from "../components/Work";
+import { CaseStudies } from "../components/CaseStudies";
 import About from "../components/About";
 import Experience from "../components/Experience";
 import Process from "../components/Process";
@@ -72,12 +72,13 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Marquee />
-      <Work />
+      {/* <Work /> */}
+      <CaseStudies />
       <About />
       <Experience />
       <Process />
       <SkillsGrid />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Achievements />
       <Contact />
       <Footer />

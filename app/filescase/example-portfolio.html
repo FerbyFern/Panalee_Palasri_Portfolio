@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nara Siriporn — UX/UI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0A0A0B;
+      --bg2: #111114;
+      --surface: #16161A;
+      --border: rgba(255, 255, 255, 0.07);
+      --cream: #F2EDE4;
+      --cream-dim: rgba(242, 237, 228, 0.55);
+      --gold: #C8A96E;
+      --gold-dim: rgba(200, 169, 110, 0.15);
+      --accent: #5B8AF0;
+      --accent2: #E06B6B;
+      --text: #E8E4DC;
+      --muted: rgba(232, 228, 220, 0.4);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(200, 169, 110, 0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.3s, height 0.3s, opacity 0.3s;
+      transform: translate(-50%, -50%);
+    }
+
+    body:hover .cursor {
+      opacity: 1;
+    }
+
+    /* Noise Texture Overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9000;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 60px;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(10, 10, 11, 0.9) 0%, transparent 100%);
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.3s;
+    }
+
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 11, 0.85);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cream);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-number {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(280px, 35vw, 520px);
+      font-weight: 600;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(200, 169, 110, 0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-left {
+      padding-top: 100px;
+      padding-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 6vw, 88px);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.35s ease forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--cream-dim);
+      max-width: 440px;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.65s ease forwards;
+    }
+
+    .btn-primary {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 16px 36px;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .btn-primary svg {
+      transition: transform 0.2s;
+    }
+
+    .btn-primary:hover svg {
+      transform: translateX(4px);
+    }
+
+    .btn-ghost {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 169, 110, 0.25);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 24px;
+      padding-top: 100px;
+      opacity: 0;
+      animation: fadeIn 1.2s 0.8s ease forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.25s;
+    }
+
+    .stat-box:hover {
+      background: var(--bg2);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-available {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .available-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ADE80;
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+      animation: pulse-green 2s infinite;
+    }
+
+    @keyframes pulse-green {
+
+      0%,
+      100% {
+        box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 16px rgba(74, 222, 128, 0.9);
+      }
+    }
+
+    /* SCROLL INDICATOR */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeIn 1s 1.5s ease forwards;
+    }
+
+    .scroll-hint span {
+      font-family: 'Syne', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollDown 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+      }
+
+      40% {
+        transform: scaleY(1);
+        transform-origin: top;
+        opacity: 1;
+      }
+
+      60% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+        opacity: 1;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+        opacity: 0;
+      }
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 72px;
+    }
+
+    .section-label-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-label-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* CASE STUDIES */
+    .case-studies {
+      padding: 120px 60px;
+      position: relative;
+    }
+
+    .cs-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 100px;
+    }
+
+    .cs-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 4.5vw, 64px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+    }
+
+    .cs-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .cs-subtitle {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      max-width: 380px;
+      align-self: end;
+    }
+
+    /* Case Study Cards */
+    .cs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cs-card {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 48px;
+      padding: 44px 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.35s, border-color 0.35s, transform 0.3s;
+      cursor: none;
+    }
+
+    .cs-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--card-accent, var(--gold));
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .cs-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--card-accent, var(--gold)) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .cs-card:hover {
+      background: var(--bg2);
+      border-color: rgba(200, 169, 110, 0.15);
+      transform: translateX(4px);
+    }
+
+    .cs-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .cs-card:hover::after {
+      opacity: 0.03;
+    }
+
+    .cs-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(200, 169, 110, 0.2);
+      line-height: 1;
+      transition: color 0.35s, -webkit-text-stroke-color 0.35s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cs-card:hover .cs-num {
+      color: var(--card-accent, var(--gold));
+      -webkit-text-stroke-color: transparent;
+      opacity: 0.5;
+    }
+
+    .cs-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cs-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .cs-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--gold));
+      background: var(--gold-dim);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .cs-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      transition: color 0.25s;
+    }
+
+    .cs-card:hover .cs-card-title {
+      color: #fff;
+    }
+
+    .cs-card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--cream-dim);
+      max-width: 560px;
+    }
+
+    .cs-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+      min-width: 160px;
+    }
+
+    .cs-meta-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: right;
+    }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cs-meta-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cs-meta-value {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--cream-dim);
+    }
+
+    .cs-arrow {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .cs-card:hover .cs-arrow {
+      background: var(--card-accent, var(--gold));
+      border-color: var(--card-accent, var(--gold));
+      color: var(--bg);
+      transform: rotate(45deg);
+    }
+
+    /* SKILLS SECTION */
+    .skills-section {
+      padding: 100px 60px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .skills-left {
+      position: sticky;
+      top: 120px;
+    }
+
+    .skills-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .skills-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .skills-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--cream-dim);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .skill-item {
+      background: var(--surface);
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: background 0.25s;
+    }
+
+    .skill-item:hover {
+      background: var(--bg);
+    }
+
+    .skill-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-dim);
+      border-radius: 4px;
+      margin-bottom: 16px;
+      color: var(--gold);
+    }
+
+    .skill-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .skill-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--cream-dim);
+    }
+
+    /* PROCESS */
+    .process-section {
+      padding: 120px 60px;
+    }
+
+    .process-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .process-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .step-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--gold);
+      transition: all 0.3s;
+    }
+
+    .process-step:hover .step-circle {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+      box-shadow: 0 0 30px rgba(200, 169, 110, 0.3);
+    }
+
+    .step-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 120px 60px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(120px, 20vw, 280px);
+      font-weight: 600;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(200, 169, 110, 0.04);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .contact-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .contact-eyebrow-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 6vw, 88px);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 24px;
+      line-height: 1.05;
+    }
+
+    .contact-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .contact-desc {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--cream-dim);
+      max-width: 480px;
+      margin: 0 auto 52px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 16px 36px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .contact-link:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .contact-link.outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(200, 169, 110, 0.4);
+    }
+
+    .contact-link.outline:hover {
+      border-color: var(--gold);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--cream-dim);
+      text-decoration: none;
+    }
+
+    .footer-logo span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-social {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-social:hover {
+      color: var(--gold);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 0 24px;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: clamp(40px, 10vw, 60px);
+      }
+
+      .case-studies,
+      .skills-section,
+      .process-section,
+      .contact-section {
+        padding: 80px 24px;
+      }
+
+      .cs-header {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-card {
+        grid-template-columns: 60px 1fr;
+        padding: 28px 24px;
+      }
+
+      .cs-meta {
+        display: none;
+      }
+
+      .skills-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-left {
+        position: static;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .process-steps::before {
+        display: none;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Nara <span>Siriporn</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">UX / UI Designer — Product Design</span>
+      </div>
+
+      <h1 class="hero-title">
+        Crafting digital<br>
+        experiences that<br>
+        <em>feel inevitable</em>
+      </h1>
+
+      <p class="hero-desc">
+        ออกแบบประสบการณ์ที่เชื่อมโยงผู้ใช้กับผลิตภัณฑ์ผ่านกระบวนการที่ขับเคลื่อนด้วยข้อมูล ความเห็นอกเห็นใจ
+        และการออกแบบเชิงระบบ
+      </p>
+
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">
+          View Case Studies
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+        <a href="#contact" class="btn-ghost">Download CV</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-available">
+        <div class="available-dot"></div>
+        Available for new projects
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Projects Shipped</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3x</div>
+          <div class="stat-label">Avg. Conversion Lift</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-bg-number" aria-hidden="true">N</div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="case-studies" id="work">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Selected Work — 2022–2025</span>
+      <div class="section-label-line"></div>
+    </div>
+
+    <div class="cs-header">
+      <h2 class="cs-title reveal">
+        Case <em>Studies</em><br>
+        & Projects
+      </h2>
+      <p class="cs-subtitle reveal reveal-delay-1">
+        งานออกแบบแต่ละชิ้นเกิดจากการทำความเข้าใจปัญหาเชิงลึก ทดสอบกับผู้ใช้จริง และวัดผลลัพธ์ที่วัดได้
+      </p>
+    </div>
+
+    <div class="cs-list">
+
+      <!-- Card 1 -->
+      <a href="#" class="cs-card reveal" style="--card-accent: #C8A96E;">
+        <div class="cs-num">01</div>
+        <div class="cs-body">
+          <div class="cs-tags">
+            <span class="cs-tag">Mobile App</span>
+            <span class="cs-tag">FinTech</span>
+            <span class="cs-tag">iOS / Android</span>
+          </div>
+          <div class="cs-card-title">PromptPay+ — Digital Wallet Redesign</div>
+          <div class="cs-card-desc">
+            ออกแบบ UX ใหม่สำหรับแอปกระเป๋าเงินดิจิทัลที่มีผู้ใช้กว่า 2 ล้านคน ลดขั้นตอนการโอนเงินจาก 7 ขั้นตอนเหลือ 3
+            ขั้นตอน ส่งผลให้ Task Completion Rate เพิ่มขึ้น 68%
+          </div>
+        </div>
+        <div class="cs-meta">
+          <div class="cs-meta-items">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Year</span>
+              <span class="cs-meta-value">2025</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Duration</span>
+              <span class="cs-meta-value">4 months</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Impact</span>
+              <span class="cs-meta-value">+68% Completion</span>
+            </div>
+          </div>
+          <div class="cs-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="#" class="cs-card reveal reveal-delay-1" style="--card-accent: #5B8AF0;">
+        <div class="cs-num">02</div>
+        <div class="cs-body">
+          <div class="cs-tags">
+            <span class="cs-tag" style="color:#5B8AF0;background:rgba(91,138,240,0.12);">SaaS Dashboard</span>
+            <span class="cs-tag" style="color:#5B8AF0;background:rgba(91,138,240,0.12);">B2B</span>
+            <span class="cs-tag" style="color:#5B8AF0;background:rgba(91,138,240,0.12);">Data Viz</span>
+          </div>
+          <div class="cs-card-title">Analytiq — Analytics Platform for SME</div>
+          <div class="cs-card-desc">
+            สร้างระบบ Design System ตั้งแต่ศูนย์และออกแบบ Dashboard ที่ซับซ้อนให้เข้าใจง่าย
+            ช่วยให้ผู้ประกอบการตัดสินใจจากข้อมูลได้เร็วขึ้น 40% และลด Support Ticket ลง 55%
+          </div>
+        </div>
+        <div class="cs-meta">
+          <div class="cs-meta-items">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Year</span>
+              <span class="cs-meta-value">2024</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Duration</span>
+              <span class="cs-meta-value">6 months</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Impact</span>
+              <span class="cs-meta-value">-55% Support</span>
+            </div>
+          </div>
+          <div class="cs-arrow" style="color: var(--muted);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="#" class="cs-card reveal reveal-delay-2" style="--card-accent: #E06B6B;">
+        <div class="cs-num">03</div>
+        <div class="cs-body">
+          <div class="cs-tags">
+            <span class="cs-tag" style="color:#E06B6B;background:rgba(224,107,107,0.1);">E-Commerce</span>
+            <span class="cs-tag" style="color:#E06B6B;background:rgba(224,107,107,0.1);">Web</span>
+            <span class="cs-tag" style="color:#E06B6B;background:rgba(224,107,107,0.1);">Conversion Opt.</span>
+          </div>
+          <div class="cs-card-title">LookStyle — Fashion Retail Experience</div>
+          <div class="cs-card-desc">
+            Redesign ประสบการณ์ซื้อแฟชั่นออนไลน์ด้วยการวิจัยพฤติกรรมผู้ใช้เชิงลึก ปรับปรุง Checkout Flow และ Product
+            Discovery ส่งผลให้ Conversion Rate เพิ่มขึ้น 3.2x ภายใน 3 เดือน
+          </div>
+        </div>
+        <div class="cs-meta">
+          <div class="cs-meta-items">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Year</span>
+              <span class="cs-meta-value">2024</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Duration</span>
+              <span class="cs-meta-value">3 months</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Impact</span>
+              <span class="cs-meta-value">3.2x Conversion</span>
+            </div>
+          </div>
+          <div class="cs-arrow" style="color: var(--muted);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="#" class="cs-card reveal reveal-delay-3" style="--card-accent: #6ECFB5;">
+        <div class="cs-num">04</div>
+        <div class="cs-body">
+          <div class="cs-tags">
+            <span class="cs-tag" style="color:#6ECFB5;background:rgba(110,207,181,0.1);">HealthTech</span>
+            <span class="cs-tag" style="color:#6ECFB5;background:rgba(110,207,181,0.1);">Patient Portal</span>
+            <span class="cs-tag" style="color:#6ECFB5;background:rgba(110,207,181,0.1);">Accessibility</span>
+          </div>
+          <div class="cs-card-title">MediConnect — Hospital Patient App</div>
+          <div class="cs-card-desc">
+            ออกแบบ Patient Portal สำหรับโรงพยาบาลที่ให้บริการผู้สูงอายุและผู้พิการ โดยเน้น Accessibility ตาม WCAG 2.2 AA
+            ช่วยลดเวลารอคิวเฉลี่ย 45 นาที และเพิ่ม NPS จาก 32 เป็น 71
+          </div>
+        </div>
+        <div class="cs-meta">
+          <div class="cs-meta-items">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Year</span>
+              <span class="cs-meta-value">2023</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Duration</span>
+              <span class="cs-meta-value">5 months</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Impact</span>
+              <span class="cs-meta-value">NPS +39 pts</span>
+            </div>
+          </div>
+          <div class="cs-arrow" style="color: var(--muted);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="#" class="cs-card reveal reveal-delay-4" style="--card-accent: #B87FE6;">
+        <div class="cs-num">05</div>
+        <div class="cs-body">
+          <div class="cs-tags">
+            <span class="cs-tag" style="color:#B87FE6;background:rgba(184,127,230,0.1);">EdTech</span>
+            <span class="cs-tag" style="color:#B87FE6;background:rgba(184,127,230,0.1);">Gamification</span>
+            <span class="cs-tag" style="color:#B87FE6;background:rgba(184,127,230,0.1);">Web + Mobile</span>
+          </div>
+          <div class="cs-card-title">Learnify — Online Learning Platform</div>
+          <div class="cs-card-desc">
+            ออกแบบระบบ Gamification และ Learning Journey ที่ปรับให้เหมาะกับผู้เรียนแต่ละคน เพิ่ม Course Completion Rate
+            จาก 18% เป็น 61% และลด Churn ลง 32% ภายใน 6 เดือน
+          </div>
+        </div>
+        <div class="cs-meta">
+          <div class="cs-meta-items">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Year</span>
+              <span class="cs-meta-value">2022</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Duration</span>
+              <span class="cs-meta-value">7 months</span>
+            </div>
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Impact</span>
+              <span class="cs-meta-value">+43% Completion</span>
+            </div>
+          </div>
+          <div class="cs-arrow" style="color: var(--muted);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="about">
+    <div class="skills-inner">
+      <div class="skills-left">
+        <div class="section-label reveal" style="margin-bottom:40px;">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Expertise</span>
+        </div>
+        <h2 class="skills-title reveal">
+          Design<br><em>Toolkit</em>
+        </h2>
+        <p class="skills-desc reveal reveal-delay-1">
+          ผสมผสานทักษะการออกแบบเชิงกลยุทธ์กับความเข้าใจทางเทคนิค เพื่อส่งมอบผลลัพธ์ที่ทั้งสวยงามและใช้งานได้จริง
+        </p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item reveal">
+          <div class="skill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+            </svg>
+          </div>
+          <div class="skill-name">UX Research</div>
+          <div class="skill-desc">User interviews, usability testing, heuristic evaluation, affinity mapping,
+            jobs-to-be-done</div>
+        </div>
+        <div class="skill-item reveal reveal-delay-1">
+          <div class="skill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+            </svg>
+          </div>
+          <div class="skill-name">UI Design</div>
+          <div class="skill-desc">Figma, component systems, design tokens, responsive layouts, micro-interactions</div>
+        </div>
+        <div class="skill-item reveal reveal-delay-2">
+          <div class="skill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <div class="skill-name">Design Systems</div>
+          <div class="skill-desc">Atomic design, Storybook, token management, component documentation, governance</div>
+        </div>
+        <div class="skill-item reveal reveal-delay-3">
+          <div class="skill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+            </svg>
+          </div>
+          <div class="skill-name">Data-Driven Design</div>
+          <div class="skill-desc">A/B testing, Mixpanel, Hotjar, analytics interpretation, conversion optimization</div>
+        </div>
+        <div class="skill-item reveal">
+          <div class="skill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+          </div>
+          <div class="skill-name">Prototyping</div>
+          <div class="skill-desc">High-fidelity Figma prototypes, ProtoPie, interactive animations, developer handoff
+          </div>
+        </div>
+        <div class="skill-item reveal reveal-delay-1">
+          <div class="skill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div class="skill-name">Product Strategy</div>
+          <div class="skill-desc">Roadmap planning, stakeholder alignment, OKR frameworks, design leadership</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section" id="process">
+    <div class="section-label reveal" style="margin-bottom:48px;">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">How I Work</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="process-title reveal">
+      My Design <em>Process</em>
+    </h2>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-circle">1</div>
+        <div class="step-name">Discover</div>
+        <div class="step-desc">ค้นหาปัญหาที่แท้จริง ผ่าน User Research และ Stakeholder Alignment</div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-circle">2</div>
+        <div class="step-name">Define</div>
+        <div class="step-desc">กำหนด Problem Statement, Personas และ Success Metrics ที่วัดได้</div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-circle">3</div>
+        <div class="step-name">Ideate</div>
+        <div class="step-desc">ระดมไอเดีย Wireframe และเลือกทิศทางที่มีโอกาสสำเร็จสูงสุด</div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-circle">4</div>
+        <div class="step-name">Prototype</div>
+        <div class="step-desc">สร้าง Hi-Fi Prototype ที่พร้อมทดสอบกับผู้ใช้จริง</div>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="step-circle">5</div>
+        <div class="step-name">Test & Ship</div>
+        <div class="step-desc">Usability Test → ปรับปรุง → Handoff → วัดผลหลัง Launch</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-bg-text" aria-hidden="true">HELLO</div>
+    <div class="contact-inner">
+      <div class="contact-eyebrow reveal">
+        <div class="contact-eyebrow-line"></div>
+        <span class="contact-eyebrow-text">Available for Work</span>
+        <div class="contact-eyebrow-line"></div>
+      </div>
+      <h2 class="contact-title reveal">
+        Let's build<br>something<br><em>remarkable</em>
+      </h2>
+      <p class="contact-desc reveal reveal-delay-1">
+        พร้อมรับโปรเจกต์ใหม่ ทั้ง Full-time, Freelance และ Consulting มีไอเดียที่อยากพูดคุย? ส่งข้อความมาได้เลย
+      </p>
+      <div class="contact-links reveal reveal-delay-2">
+        <a href="mailto:hello@nara.design" class="contact-link">hello@nara.design</a>
+        <a href="#" class="contact-link outline">LinkedIn</a>
+        <a href="#" class="contact-link outline">Behance</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Nara <span>Siriporn</span></a>
+    <span class="footer-copy">© 2025 — All rights reserved</span>
+    <div class="footer-socials">
+      <a href="#" class="footer-social">Dribbble</a>
+      <a href="#" class="footer-social">Behance</a>
+      <a href="#" class="footer-social">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button, .cs-card, .stat-box, .skill-item, .process-step').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+        cursor.style.opacity = '0.7';
+        ring.style.width = '60px';
+        ring.style.height = '60px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.opacity = '1';
+        ring.style.width = '40px';
+        ring.style.height = '40px';
+      });
+    });
+
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import CaseStudyHero, { CaseStudyPreview } from "../../../components/CaseStudyHero";
 
 export default function PMSFCaseStudy() {
   useEffect(() => {
@@ -37,50 +38,45 @@ export default function PMSFCaseStudy() {
         <Link href="/" className="cs-back">
           ← Back to Portfolio
         </Link>
-        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '11px', color: 'var(--ink-muted)' }}>
+        <div style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)' }}>
           Case Study 03
         </div>
       </nav>
 
       {/* HERO */}
-      <section className="cs-hero" style={{ background: '#8B1A3A', paddingBottom: 0, overflow: 'hidden' }}>
-        <div className="cs-hero-inner">
-          <div className="cs-eyebrow reveal" style={{ color: 'rgba(255,255,255,0.45)' }}>Case Study 03 · Web Redesign · Freelance</div>
-          <h1 className="cs-title reveal reveal-delay-1" style={{ color: 'white' }}>
-            PMSF — <em style={{ color: 'rgba(255,255,255,0.55)' }}>Redesigning for<br />royal credibility.</em>
-          </h1>
-          <p className="cs-subtitle reveal reveal-delay-2" style={{ color: 'rgba(255,255,255,0.6)' }}>
-            A full responsive redesign of the Princess Maha Chakri Sirindhorn Foundation website —
-            reducing navigation from 11 items to 5, and making programmes findable in under 2 clicks.
-          </p>
-          <div className="cs-chips reveal reveal-delay-2">
-            {[
-              { label: 'Timeline', value: 'Sep – Dec 2022' },
-              { label: 'Role', value: 'UX/UI Designer (Freelance)' },
-              { label: 'Platform', value: 'Responsive Web' },
-              { label: 'Focus', value: 'IA + Visual Identity' },
-            ].map((m) => (
-              <div key={m.label} className="cs-chip">
-                <strong>{m.value}</strong>
-                {m.label}
-              </div>
-            ))}
-          </div>
-
-          <div className="cs-outcome-bar reveal" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-            {[
-              { num: '11→5', label: 'Navigation items reduced' },
-              { num: '< 2', label: 'Clicks to any programme' },
-              { num: '100%', label: 'Mobile responsive coverage' },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="cs-outcome-bar-num">{s.num}</div>
-                <div className="cs-outcome-bar-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CaseStudyHero
+        background="var(--ink)"
+        eyebrow="Case Study 03 · Web Redesign · Freelance"
+        title={<>PMSF — <em style={{ color: 'rgba(255,255,255,0.55)' }}>Redesigning for<br />royal credibility.</em></>}
+        subtitle="A full responsive redesign of the Princess Maha Chakri Sirindhorn Foundation website — reducing navigation from 11 items to 5, and making programmes findable in under 2 clicks."
+        chips={[
+          { label: 'Timeline', value: 'Sep – Dec 2022' },
+          { label: 'Role', value: 'UX/UI Designer (Freelance)' },
+          { label: 'Platform', value: 'Responsive Web' },
+          { label: 'Focus', value: 'IA + Visual Identity' },
+        ]}
+        stats={[
+          { num: '11→5', label: 'Navigation items reduced' },
+          { num: '< 2', label: 'Clicks to any programme' },
+          { num: '100%', label: 'Mobile responsive coverage' },
+        ]}
+        statsColumns={3}
+        media={
+          <CaseStudyPreview
+            url="pmsf.org"
+            accent="var(--accent)"
+            title="Royal foundation site"
+            subtitle="Information architecture and trust signals designed for clarity."
+            imageSrc="/images/work/pmsf/thumbnail.png"
+            imageAlt="PMSF redesign preview"
+            cards={[
+              { label: 'Navigation', value: '11 → 5' },
+              { label: 'Access', value: '< 2 clicks' },
+              { label: 'Coverage', value: 'Responsive' },
+            ]}
+          />
+        }
+      />
 
       {/* PROBLEM */}
       <section className="cs-section" style={{ background: 'var(--cream)' }}>
@@ -88,15 +84,15 @@ export default function PMSFCaseStudy() {
         <h2 className="cs-h2 reveal">11 navigation items.<br />No clear hierarchy. Zero mobile.</h2>
         <div className="cs-two-col reveal" style={{ marginTop: '48px' }}>
           <div>
-            <p style={{ fontSize: '16px', lineHeight: 1.85, color: 'var(--ink)', marginBottom: '16px' }}>
+            <p style={{ fontSize: 'var(--fs-16)', lineHeight: 1.85, color: 'var(--ink)', marginBottom: '16px' }}>
               The Princess Maha Chakri Sirindhorn Foundation (PMSF) is one of Thailand's most prominent royal foundations. But its digital presence hadn't kept pace with its stature — 11 top-level navigation items, no mobile layout, and content buried 4 clicks deep.
             </p>
-            <p style={{ fontSize: '16px', lineHeight: 1.85, color: 'var(--ink)' }}>
+            <p style={{ fontSize: 'var(--fs-16)', lineHeight: 1.85, color: 'var(--ink)' }}>
               Stakeholders needed the site to communicate royal patronage and institutional credibility at a glance, while making programmes — the Foundation's core offering — easy to discover and act on.
             </p>
           </div>
           <div style={{ background: 'var(--ink)', padding: '48px', borderLeft: '3px solid var(--accent)' }}>
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.6 }}>
+            <p style={{ color: 'rgba(255,255,255,0.7)', fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-20)', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.6 }}>
               "How might we bring the Foundation's website up to the standard of its reputation — while making it simple enough for any visitor to find what they need in under two clicks?"
             </p>
           </div>
@@ -115,7 +111,7 @@ export default function PMSFCaseStudy() {
         </div>
 
         <h3 className="cs-h3 reveal" style={{ marginBottom: '24px' }}>Navigation Restructure</h3>
-        <p className="reveal" style={{ marginBottom: '32px', maxWidth: '640px', fontSize: '16px', lineHeight: 1.85, color: 'var(--ink-soft)' }}>
+        <p className="reveal" style={{ marginBottom: '32px', maxWidth: '640px', fontSize: 'var(--fs-16)', lineHeight: 1.85, color: 'var(--ink-soft)' }}>
           The original site had 11 top-level navigation items with no clear priority order. The redesign reduced this to 5 primary items with logical sub-groups.
         </p>
 
@@ -171,18 +167,18 @@ export default function PMSFCaseStudy() {
         <div className="cs-metrics-row reveal">
           <div className="cs-metric">
             <div className="cs-metric-label">Goal 01</div>
-            <div className="cs-metric-value" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '36px', fontWeight: 300, color: 'var(--accent)', lineHeight: 1 }}>Mobile</div>
-            <p className="cs-metric-value" style={{ fontSize: '13px', marginTop: '8px', lineHeight: 1.6, color: 'var(--ink-soft)', fontFamily: 'inherit', fontWeight: 400 }}>Full mobile-responsive layout — every page, every interaction, every content type works on any screen size</p>
+            <div className="cs-metric-value" style={{ fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-36)', fontWeight: 300, color: 'var(--accent)', lineHeight: 1 }}>Mobile</div>
+            <p className="cs-metric-value" style={{ fontSize: 'var(--fs-13)', marginTop: '8px', lineHeight: 1.6, color: 'var(--ink-soft)', fontFamily: 'inherit', fontWeight: 400 }}>Full mobile-responsive layout — every page, every interaction, every content type works on any screen size</p>
           </div>
           <div className="cs-metric">
             <div className="cs-metric-label">Goal 02</div>
-            <div className="cs-metric-value" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '36px', fontWeight: 300, color: 'var(--accent)', lineHeight: 1 }}>&lt; 2 clicks</div>
-            <p className="cs-metric-value" style={{ fontSize: '13px', marginTop: '8px', lineHeight: 1.6, color: 'var(--ink-soft)', fontFamily: 'inherit', fontWeight: 400 }}>Any visitor should reach any programme or key content within two interactions from the homepage</p>
+            <div className="cs-metric-value" style={{ fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-36)', fontWeight: 300, color: 'var(--accent)', lineHeight: 1 }}>&lt; 2 clicks</div>
+            <p className="cs-metric-value" style={{ fontSize: 'var(--fs-13)', marginTop: '8px', lineHeight: 1.6, color: 'var(--ink-soft)', fontFamily: 'inherit', fontWeight: 400 }}>Any visitor should reach any programme or key content within two interactions from the homepage</p>
           </div>
           <div className="cs-metric">
             <div className="cs-metric-label">Goal 03</div>
-            <div className="cs-metric-value" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '36px', fontWeight: 300, color: 'var(--accent)', lineHeight: 1 }}>Credible</div>
-            <p className="cs-metric-value" style={{ fontSize: '13px', marginTop: '8px', lineHeight: 1.6, color: 'var(--ink-soft)', fontFamily: 'inherit', fontWeight: 400 }}>Visual identity must reflect the Foundation's royal patronage — formal, trustworthy, and distinctly Thai institutional</p>
+            <div className="cs-metric-value" style={{ fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-36)', fontWeight: 300, color: 'var(--accent)', lineHeight: 1 }}>Credible</div>
+            <p className="cs-metric-value" style={{ fontSize: 'var(--fs-13)', marginTop: '8px', lineHeight: 1.6, color: 'var(--ink-soft)', fontFamily: 'inherit', fontWeight: 400 }}>Visual identity must reflect the Foundation's royal patronage — formal, trustworthy, and distinctly Thai institutional</p>
           </div>
         </div>
       </section>

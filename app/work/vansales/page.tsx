@@ -37,7 +37,7 @@ export default function VansalesCaseStudy() {
         <Link href="/" className="cs-back">
           ← Back to Portfolio
         </Link>
-        <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '11px', color: 'var(--ink-muted)' }}>
+        <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)' }}>
           Vansales — Case Study
         </span>
       </nav>
@@ -123,7 +123,7 @@ export default function VansalesCaseStudy() {
             <div className="reveal">
               <p style={{ marginTop: '24px' }}>Sales representatives at Vansales Application Co., Ltd. were managing customer orders, delivery tracking, and inventory updates through a combination of spreadsheets, WhatsApp messages, and manual data entry. Errors were frequent, real-time visibility was impossible, and managers had no reliable picture of daily performance.</p>
               <div style={{ background: 'var(--ink)', padding: '48px', borderLeft: '3px solid var(--accent)', marginTop: '32px' }}>
-                <p style={{ color: 'rgba(255,255,255,0.7)', fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontStyle: 'italic' }}>
+                <p style={{ color: 'rgba(255,255,255,0.7)', fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-20)', fontStyle: 'italic' }}>
                   "How do we give field sales reps a tool that actually fits how they work — fast, on the move, often offline — while giving managers the real-time visibility they need to make decisions?"
                 </p>
               </div>
@@ -177,26 +177,26 @@ export default function VansalesCaseStudy() {
         <h3 className="reveal" style={{ marginBottom: '24px' }}>Primary Persona</h3>
         <div style={{ background: 'var(--white)', border: '1px solid var(--border)', maxWidth: '700px' }} className="reveal">
           <div style={{ padding: '32px 32px 0', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#EFF4FB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', color: '#1E3A6E' }}>P</div>
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#EFF4FB', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "var(--font-display), serif", fontSize: 'var(--fs-22)', color: '#1E3A6E' }}>P</div>
             <div>
               <div style={{ fontWeight: 500 }}>Prasong, 34</div>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '10px', color: 'var(--ink-muted)' }}>Field Sales Representative</div>
+              <div style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-10)', color: 'var(--ink-muted)' }}>Field Sales Representative</div>
             </div>
           </div>
-          <div style={{ fontStyle: 'italic', padding: '20px 32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', marginTop: '20px', fontSize: '17px', color: 'var(--ink-soft)' }}>
+          <div style={{ fontStyle: 'italic', padding: '20px 32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', marginTop: '20px', fontSize: 'var(--fs-17)', color: 'var(--ink-soft)' }}>
             "I'm on the road from 7am. I need everything to just work — I can't be filling in forms for 20 minutes between customer visits."
           </div>
           <div style={{ padding: '24px 32px 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
             <div>
-              <div style={{ color: 'var(--accent)', fontSize: '9px', marginBottom: '12px', letterSpacing: '.18em' }}>GOALS</div>
-              <ul style={{ listStyle: 'none', fontSize: '12px', color: 'var(--ink-soft)' }}>
+              <div style={{ color: 'var(--accent)', fontSize: 'calc(9px * var(--type-scale))', marginBottom: '12px', letterSpacing: '.18em' }}>GOALS</div>
+              <ul style={{ listStyle: 'none', fontSize: 'var(--fs-12)', color: 'var(--ink-soft)' }}>
                 <li>· Record orders quickly</li>
                 <li>· Check stock before promise</li>
               </ul>
             </div>
             <div>
-              <div style={{ color: 'var(--accent)', fontSize: '9px', marginBottom: '12px', letterSpacing: '.18em' }}>PAIN POINTS</div>
-              <ul style={{ listStyle: 'none', fontSize: '12px', color: 'var(--ink-soft)' }}>
+              <div style={{ color: 'var(--accent)', fontSize: 'calc(9px * var(--type-scale))', marginBottom: '12px', letterSpacing: '.18em' }}>PAIN POINTS</div>
+              <ul style={{ listStyle: 'none', fontSize: 'var(--fs-12)', color: 'var(--ink-soft)' }}>
                 <li>· Gloved hands (touch size)</li>
                 <li>· Direct sunlight visibility</li>
               </ul>
