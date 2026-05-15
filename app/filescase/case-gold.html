@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ClassicGold CES — UX/UI Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:       #0A1628;
+  --navy-mid:   #142240;
+  --navy-soft:  #1E3057;
+  --navy-light: #2A4170;
+  --gold:       #C9943A;
+  --gold-bright:#E8B84B;
+  --gold-pale:  #F5E6C0;
+  --gold-dim:   rgba(201,148,58,0.18);
+  --cream:      #F7F2E8;
+  --cream-dark: #EDE4D0;
+  --white:      #FDFCFA;
+  --charcoal:   #1C2432;
+  --muted:      #5C6B80;
+  --border-d:   rgba(255,255,255,0.08);
+  --border-l:   rgba(201,148,58,0.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--cream);color:var(--charcoal);overflow-x:hidden;}
+
+/* ── PROGRESS ── */
+.prog-bar{position:fixed;top:0;left:0;right:0;height:2px;background:var(--navy);z-index:200;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));width:0;transition:width .1s;}
+
+/* ── NAV ── */
+nav{position:fixed;top:2px;left:0;right:0;z-index:100;background:rgba(10,22,40,0.97);backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:60px;
+  border-bottom:1px solid var(--border-d);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;}
+.nav-logo span{color:rgba(255,255,255,0.35);font-weight:300;margin:0 8px;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.7rem;font-weight:500;
+  letter-spacing:0.12em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--gold-bright);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--navy);position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 56px 60px;gap:60px;}
+.hero-bg{position:absolute;inset:0;pointer-events:none;}
+.hero-bg::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,148,58,0.1) 0%,transparent 65%);}
+.hero-bg::after{content:'';position:absolute;bottom:-100px;left:-50px;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(42,65,112,0.5) 0%,transparent 70%);}
+/* Art Deco grid lines */
+.deco-lines{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.deco-lines::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(201,148,58,0.12),transparent);}
+.deco-lines::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,148,58,0.12),transparent);}
+
+.hero-left{z-index:1;animation:fadeUp .8s ease both;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-dim);border:1px solid rgba(201,148,58,0.3);
+  color:var(--gold);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  padding:6px 14px;border-radius:2px;margin-bottom:32px;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,5rem);
+  font-weight:600;line-height:1.05;color:var(--white);margin-bottom:8px;}
+.hero h1 em{font-style:italic;color:var(--gold-bright);}
+.hero-sub{font-size:0.88rem;color:rgba(255,255,255,0.45);font-weight:300;
+  line-height:1.8;max-width:440px;margin-bottom:48px;letter-spacing:0.02em;}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid var(--border-d);border-radius:4px;overflow:hidden;max-width:520px;}
+.hm-item{padding:16px 18px;background:rgba(255,255,255,0.03);}
+.hm-item:not(:last-child){border-right:1px solid var(--border-d);}
+.hm-label{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.hm-value{font-size:0.8rem;color:rgba(255,255,255,0.8);font-weight:500;line-height:1.4;}
+
+.hero-right{z-index:1;display:flex;flex-direction:column;gap:12px;animation:fadeUp .8s .2s ease both;}
+.sys-screen{background:rgba(255,255,255,0.04);border:1px solid var(--border-d);
+  border-radius:8px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5);}
+.sys-topbar{background:rgba(255,255,255,0.05);padding:10px 16px;
+  display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border-d);}
+.sys-dots{display:flex;gap:5px;}
+.sys-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.12);}
+.sys-title{font-size:0.65rem;color:rgba(255,255,255,0.25);letter-spacing:0.08em;flex:1;text-align:center;}
+.sys-gold-price{margin-left:auto;display:flex;align-items:center;gap:6px;}
+.sys-price-label{font-size:0.58rem;color:rgba(255,255,255,0.3);letter-spacing:0.08em;}
+.sys-price-val{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:500;color:var(--gold-bright);}
+.sys-body{padding:16px;}
+/* Mock dashboard rows */
+.mock-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;}
+.mock-metric{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);
+  border-radius:4px;padding:10px 12px;}
+.mock-metric-label{font-size:0.5rem;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin-bottom:4px;}
+.mock-metric-val{font-family:'IBM Plex Mono',monospace;font-size:0.85rem;font-weight:500;color:var(--white);}
+.mock-metric-val.gold{color:var(--gold-bright);}
+.mock-metric-val.green{color:#5CDB95;}
+.mock-metric-val.red{color:#E07070;}
+.mock-table-header{display:grid;grid-template-columns:80px 1fr 80px 80px 60px;
+  gap:8px;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.mock-th{font-size:0.48rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+.mock-table-row{display:grid;grid-template-columns:80px 1fr 80px 80px 60px;
+  gap:8px;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;}
+.mock-td{font-size:0.56rem;color:rgba(255,255,255,0.65);font-family:'IBM Plex Mono',monospace;}
+.mock-td.name{font-family:'IBM Plex Sans',sans-serif;color:rgba(255,255,255,0.8);}
+.mock-badge{display:inline-block;font-size:0.45rem;padding:2px 6px;border-radius:2px;font-weight:500;letter-spacing:0.05em;}
+.badge-pending{background:rgba(232,184,75,0.15);color:var(--gold-bright);}
+.badge-settle{background:rgba(92,219,149,0.12);color:#5CDB95;}
+.badge-active{background:rgba(92,149,219,0.12);color:#8AB4F8;}
+
+/* ── SECTION BASE ── */
+section{padding:88px 56px;}
+.sec-tag{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:600;line-height:1.15;margin-bottom:14px;}
+.sec-lead{font-size:0.95rem;color:var(--muted);max-width:580px;line-height:1.85;margin-bottom:52px;}
+.gold-rule{width:40px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:18px;}
+
+/* ── S1 OVERVIEW ── */
+#overview{background:var(--white);}
+.ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:52px;}
+.ov-card{background:var(--cream);border:1px solid var(--cream-dark);border-radius:6px;
+  padding:22px 24px;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s;}
+.ov-card:hover{box-shadow:0 10px 28px rgba(0,0,0,0.07);transform:translateY(-2px);}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-pale));}
+.ov-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.ov-value{font-size:0.88rem;font-weight:500;color:var(--charcoal);line-height:1.55;}
+
+.module-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:40px;}
+.mod-card{background:var(--navy);border-radius:6px;padding:18px 16px;
+  position:relative;overflow:hidden;cursor:default;transition:background .2s;}
+.mod-card:hover{background:var(--navy-mid);}
+.mod-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold-dim);}
+.mod-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;
+  color:rgba(201,148,58,0.15);line-height:1;margin-bottom:8px;}
+.mod-name{font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:5px;}
+.mod-desc{font-size:0.68rem;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+.tools-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tool-tag{display:inline-block;font-size:0.68rem;font-weight:500;padding:5px 14px;border-radius:2px;}
+.tool-tag.dark{background:var(--navy);color:rgba(255,255,255,0.8);}
+.tool-tag.gold{background:rgba(201,148,58,0.1);color:var(--gold);border:1px solid rgba(201,148,58,0.25);}
+
+/* ── S2 PROBLEM ── */
+#problem{background:var(--navy);}
+#problem .sec-title{color:var(--white);}
+#problem .sec-lead{color:rgba(255,255,255,0.45);}
+#problem .sec-tag{color:var(--gold);}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;}
+.prob-statement{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:28px 32px;margin-bottom:28px;}
+.prob-statement-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.prob-statement-text{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;
+  line-height:1.65;color:rgba(255,255,255,0.85);}
+.prob-list{list-style:none;}
+.prob-list li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.86rem;
+  color:rgba(255,255,255,0.65);line-height:1.7;}
+.prob-list li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);margin-top:8px;}
+.impact-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.impact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;padding:18px 20px;}
+.ic-icon{font-size:1.3rem;margin-bottom:9px;}
+.ic-title{font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:5px;}
+.ic-desc{font-size:0.75rem;color:rgba(255,255,255,0.4);line-height:1.65;}
+
+/* ── S3 RESEARCH ── */
+#research{background:var(--cream);}
+.research-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
+.r-card{background:var(--white);border:1px solid var(--cream-dark);border-radius:6px;padding:24px;}
+.r-icon{font-size:1.5rem;margin-bottom:12px;}
+.r-title{font-weight:600;font-size:0.9rem;margin-bottom:7px;}
+.r-body{font-size:0.82rem;color:var(--muted);line-height:1.75;}
+.finding-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.finding-card{background:var(--navy);border-radius:6px;padding:24px;color:white;}
+.fc-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.fc-quote{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;
+  line-height:1.65;color:rgba(255,255,255,0.85);}
+
+/* ── S4 DEFINE ── */
+#define{background:var(--navy-mid);}
+#define .sec-title{color:var(--white);}
+#define .sec-lead{color:rgba(255,255,255,0.45);}
+#define .sec-tag{color:var(--gold);}
+.hmw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:48px;}
+.hmw-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:22px;}
+.hmw-tag{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.hmw-text{font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.7;}
+.principles-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
+.principle{border-top:2px solid rgba(201,148,58,0.3);padding-top:16px;}
+.p-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;
+  color:rgba(201,148,58,0.15);line-height:1;}
+.p-title{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:5px;}
+.p-body{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.65;}
+
+/* Role Matrix */
+.role-matrix{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;overflow:hidden;margin-top:40px;}
+.rm-header{display:grid;grid-template-columns:200px repeat(9,1fr);gap:0;
+  background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.07);}
+.rm-head{padding:12px 8px;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);text-align:center;}
+.rm-head:first-child{text-align:left;padding-left:16px;}
+.rm-row{display:grid;grid-template-columns:200px repeat(9,1fr);gap:0;
+  border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;}
+.rm-row:last-child{border-bottom:none;}
+.rm-module{padding:11px 8px 11px 16px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:500;}
+.rm-perm{text-align:center;padding:11px 4px;font-size:0.58rem;font-family:'IBM Plex Mono',monospace;
+  font-weight:500;}
+.rm-perm.full{color:#5CDB95;}
+.rm-perm.partial{color:var(--gold-bright);}
+.rm-perm.view{color:rgba(255,255,255,0.3);}
+.rm-perm.none{color:rgba(255,255,255,0.1);}
+
+/* ── S5 DESIGN ── */
+#design{background:var(--white);}
+.design-phases{display:flex;gap:0;margin-bottom:48px;border:1px solid var(--cream-dark);border-radius:6px;overflow:hidden;}
+.phase{flex:1;padding:18px 20px;border-right:1px solid var(--cream-dark);}
+.phase:last-child{border-right:none;}
+.ph-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;
+  color:rgba(201,148,58,0.15);line-height:1;}
+.ph-title{font-size:0.78rem;font-weight:600;color:var(--navy);margin-bottom:5px;}
+.ph-body{font-size:0.72rem;color:var(--muted);line-height:1.6;}
+.screens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px;}
+.screen-card{background:var(--navy);border-radius:8px;overflow:hidden;
+  box-shadow:0 12px 32px rgba(10,22,40,0.2);}
+.screen-topbar{background:rgba(255,255,255,0.04);padding:9px 14px;
+  display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.screen-dot2{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.12);}
+.screen-url2{flex:1;font-size:0.55rem;color:rgba(255,255,255,0.2);margin-left:6px;font-family:'IBM Plex Mono',monospace;}
+.screen-body2{padding:12px 14px;min-height:180px;}
+.screen-label2{font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.screen-name2{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:6px;}
+.screen-desc2{font-size:0.72rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:10px;}
+
+/* Mock screens content */
+.mock-price-board{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:10px;}
+.mpb-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.mpb-row:last-child{border-bottom:none;}
+.mpb-type{font-size:0.55rem;color:rgba(255,255,255,0.5);}
+.mpb-price{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:500;}
+.mpb-buy{color:#5CDB95;}.mpb-sell{color:#E07070;}
+.mpb-spread{font-size:0.5rem;color:rgba(255,255,255,0.25);}
+
+.mock-ticket{background:rgba(255,255,255,0.03);border:1px solid rgba(201,148,58,0.15);border-radius:4px;padding:10px;}
+.mt-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.mt-id{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--gold);}
+.mt-status{font-size:0.48rem;padding:2px 7px;background:rgba(232,184,75,0.12);color:var(--gold-bright);border-radius:2px;}
+.mt-field{display:flex;justify-content:space-between;padding:3px 0;}
+.mt-key{font-size:0.52rem;color:rgba(255,255,255,0.35);}
+.mt-val{font-size:0.55rem;color:rgba(255,255,255,0.75);font-family:'IBM Plex Mono',monospace;}
+
+.mock-nop{padding:0;}
+.nop-gauge{text-align:center;padding:10px 0;}
+.nop-val{font-family:'IBM Plex Mono',monospace;font-size:1.2rem;font-weight:600;color:#5CDB95;}
+.nop-label{font-size:0.5rem;color:rgba(255,255,255,0.3);letter-spacing:0.08em;margin-top:3px;}
+.nop-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;margin:8px 0;overflow:hidden;}
+.nop-bar-fill{height:100%;background:linear-gradient(90deg,#5CDB95,#3AB87A);border-radius:3px;width:62%;}
+.nop-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.nop-key{font-size:0.5rem;color:rgba(255,255,255,0.35);}
+.nop-v{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.7);}
+
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.comp-card{background:var(--cream);border:1px solid var(--cream-dark);border-radius:6px;padding:20px;}
+.comp-title{font-weight:600;font-size:0.85rem;color:var(--navy);margin-bottom:6px;}
+.comp-body{font-size:0.8rem;color:var(--muted);line-height:1.7;}
+
+/* ── S6 TESTING ── */
+#testing{background:var(--navy);}
+#testing .sec-title{color:var(--white);}
+#testing .sec-lead{color:rgba(255,255,255,0.45);}
+#testing .sec-tag{color:var(--gold);}
+.dev-banner{background:rgba(201,148,58,0.08);border:1px solid rgba(201,148,58,0.25);
+  border-radius:6px;padding:16px 24px;margin-bottom:40px;
+  display:flex;align-items:center;gap:16px;}
+.dev-icon{font-size:1.4rem;flex-shrink:0;}
+.dev-text{font-size:0.85rem;color:rgba(255,255,255,0.7);line-height:1.65;}
+.dev-text strong{color:var(--gold-bright);}
+.testing-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.test-methods{display:grid;gap:12px;}
+.test-method{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;}
+.tm-icon{font-size:1.2rem;flex-shrink:0;}
+.tm-title{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:5px;}
+.tm-body{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.65;}
+
+.ac-table{width:100%;border-collapse:collapse;}
+.ac-table th{text-align:left;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold);padding:0 14px 12px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.ac-table td{padding:11px 14px;font-size:0.82rem;color:rgba(255,255,255,0.65);
+  border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;line-height:1.6;}
+.ac-table td:first-child{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--gold);width:90px;}
+.ac-count{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+  padding:2px 8px;background:rgba(201,148,58,0.1);color:var(--gold-bright);border-radius:2px;}
+
+/* ── S7 OUTCOMES ── */
+#outcomes{background:var(--cream);}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px;}
+.metric-card{background:var(--white);border:1px solid var(--cream-dark);border-radius:6px;
+  padding:26px 20px;text-align:center;}
+.metric-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;
+  color:var(--navy);line-height:1;margin-bottom:6px;}
+.metric-label{font-size:0.75rem;color:var(--muted);line-height:1.5;}
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.outcomes-col h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;
+  font-weight:600;margin-bottom:18px;color:var(--navy);}
+.outcome-list{list-style:none;display:grid;gap:10px;}
+.outcome-list li{display:flex;gap:10px;align-items:flex-start;
+  font-size:0.85rem;color:var(--muted);line-height:1.7;}
+.outcome-list li::before{content:'◆';flex-shrink:0;color:var(--gold);font-size:0.55rem;margin-top:6px;}
+.deliverables-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px;}
+.del-card{background:var(--navy);border-radius:6px;padding:22px;}
+.del-icon{font-size:1.3rem;margin-bottom:10px;}
+.del-title{font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:5px;}
+.del-body{font-size:0.75rem;color:rgba(255,255,255,0.4);line-height:1.65;}
+
+/* ── S8 REFLECTION ── */
+#reflection{background:var(--navy);}
+#reflection .sec-title{color:var(--white);}
+#reflection .sec-lead{color:rgba(255,255,255,0.45);}
+#reflection .sec-tag{color:var(--gold);}
+.reflection-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px;}
+.ref-col h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;
+  color:rgba(255,255,255,0.9);margin-bottom:18px;padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,0.08);}
+.ref-list{list-style:none;display:grid;gap:12px;}
+.ref-list li{display:flex;gap:12px;font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7;}
+.ref-icon{flex-shrink:0;font-size:1rem;margin-top:1px;}
+.learnings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:48px;}
+.learning-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;padding:22px;}
+.lc-icon{font-size:1.3rem;margin-bottom:10px;}
+.lc-title{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:6px;}
+.lc-body{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.65;}
+.next-steps-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;padding:36px;}
+.next-steps-box h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;
+  color:rgba(255,255,255,0.9);margin-bottom:24px;}
+.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.next-item{display:flex;gap:14px;}
+.next-num{width:28px;height:28px;border-radius:50%;background:var(--gold-dim);
+  color:var(--gold);font-size:0.72rem;font-weight:600;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.next-text{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7;}
+.next-text strong{color:rgba(255,255,255,0.9);display:block;margin-bottom:3px;}
+
+/* ── FOOTER ── */
+footer{background:#060E1C;color:rgba(255,255,255,0.25);padding:36px 56px;
+  display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);font-weight:600;}
+.footer-status{display:flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  section{padding:56px 20px;}
+  .hero{grid-template-columns:1fr;padding:90px 20px 50px;gap:36px;}
+  .hero-right{display:none;}
+  .hero-meta{grid-template-columns:1fr 1fr;}
+  .ov-grid,.module-grid,.hmw-grid,.principles-row{grid-template-columns:1fr 1fr;}
+  .prob-grid,.outcomes-grid,.reflection-cols,.testing-grid,.finding-cards{grid-template-columns:1fr;}
+  .metrics-row,.deliverables-row,.learnings-grid{grid-template-columns:1fr 1fr;}
+  .screens-grid{grid-template-columns:1fr;}
+  .rm-header,.rm-row{grid-template-columns:120px repeat(5,1fr);}
+  .rm-head:nth-child(n+7),.rm-perm:nth-child(n+7){display:none;}
+  footer{flex-direction:column;gap:14px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+
+<nav>
+  <div class="nav-logo">🔑 ClassicGold <span>|</span> CES Case Study</div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#define">Define</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="deco-lines"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span> In Active Development · No UAT Yet</div>
+    <h1>Chiab Enterprise<br/><em>System</em></h1>
+    <p class="hero-sub">An end-to-end gold trading operations platform — designed to manage real-time price matching, multi-role transaction workflows, inventory tracking, Net Settlement, and NOP risk management for a Thai gold trading business.</p>
+    <div class="hero-meta">
+      <div class="hm-item">
+        <div class="hm-label">System</div>
+        <div class="hm-value">CES v1.1<br/>ClassicGold</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-label">Timeline</div>
+        <div class="hm-value">Jan 2026 –<br/>Present</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-label">Modules</div>
+        <div class="hm-value">11 Functional<br/>Modules</div>
+      </div>
+      <div class="hm-item">
+        <div class="hm-label">User Roles</div>
+        <div class="hm-value">9 RBAC<br/>Roles</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="sys-screen">
+      <div class="sys-topbar">
+        <div class="sys-dots"><div class="sys-dot"></div><div class="sys-dot"></div><div class="sys-dot"></div></div>
+        <div class="sys-title">CES — Dashboard</div>
+        <div class="sys-gold-price">
+          <div class="sys-price-label">GOLD</div>
+          <div class="sys-price-val">฿47,850</div>
+        </div>
+      </div>
+      <div class="sys-body">
+        <div class="mock-row">
+          <div class="mock-metric"><div class="mock-metric-label">NET POSITION</div><div class="mock-metric-val green">+62.5 บาท</div></div>
+          <div class="mock-metric"><div class="mock-metric-label">OPEN TICKETS</div><div class="mock-metric-val gold">8</div></div>
+          <div class="mock-metric"><div class="mock-metric-label">PENDING SETTLE</div><div class="mock-metric-val red">3</div></div>
+        </div>
+        <div class="mock-table-header">
+          <div class="mock-th">TICKET ID</div>
+          <div class="mock-th">CUSTOMER</div>
+          <div class="mock-th">WEIGHT</div>
+          <div class="mock-th">VALUE</div>
+          <div class="mock-th">STATUS</div>
+        </div>
+        <div class="mock-table-row">
+          <div class="mock-td">TK-240901</div>
+          <div class="mock-td name">บริษัท ABC</div>
+          <div class="mock-td">25.00 บาท</div>
+          <div class="mock-td">1.19M</div>
+          <div class="mock-td"><span class="mock-badge badge-settle">Settled</span></div>
+        </div>
+        <div class="mock-table-row">
+          <div class="mock-td">TK-240902</div>
+          <div class="mock-td name">นาย สมชาย</div>
+          <div class="mock-td">10.50 บาท</div>
+          <div class="mock-td">502K</div>
+          <div class="mock-td"><span class="mock-badge badge-pending">Pending</span></div>
+        </div>
+        <div class="mock-table-row">
+          <div class="mock-td">TK-240903</div>
+          <div class="mock-td name">ร้าน XYZ Gold</div>
+          <div class="mock-td">50.00 บาท</div>
+          <div class="mock-td">2.39M</div>
+          <div class="mock-td"><span class="mock-badge badge-active">Active</span></div>
+        </div>
+        <div class="mock-table-row">
+          <div class="mock-td">TK-240904</div>
+          <div class="mock-td name">บริษัท DEF</div>
+          <div class="mock-td">5.25 บาท</div>
+          <div class="mock-td">251K</div>
+          <div class="mock-td"><span class="mock-badge badge-pending">Pending</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S1: OVERVIEW ═══ -->
+<section id="overview">
+  <span class="sec-tag">01 — Project Overview</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">Setting the Stage</h2>
+  <p class="sec-lead reveal">What is this system, who built it, and what business problem does it exist to solve?</p>
+
+  <div class="ov-grid reveal">
+    <div class="ov-card">
+      <div class="ov-label">System Name</div>
+      <div class="ov-value">Chiab Enterprise System (CES) — ClassicGold</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">My Role</div>
+      <div class="ov-value">UX/UI Designer — UI_D2 &amp; UI_Final Figma Pages</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">Client / End User</div>
+      <div class="ov-value">Chiab Seng Heng — Thai Gold Trading Business</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">Project Manager</div>
+      <div class="ov-value">Mr. Chakrit Kluenkloy · Vansales Application</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">Technical Team</div>
+      <div class="ov-value">Lead Dev: Mr. Preeyapol Owatsuwan<br/>Principal Software: Mr. Monthon Nunlaong</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">Timeline &amp; Status</div>
+      <div class="ov-value">Jan 2026 – Present · FSD v1.1 (March 2026) · In Development · No UAT Conducted</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:20px;color:var(--navy);">11 Functional Modules</h3>
+  <div class="module-grid reveal">
+    <div class="mod-card"><div class="mod-num">01</div><div class="mod-name">Master Data Management</div><div class="mod-desc">SKU Hierarchy (8 levels), Customer Master, Weight Master, Container/LPN, Labor Rate</div></div>
+    <div class="mod-card"><div class="mod-num">02</div><div class="mod-name">Price Management</div><div class="mod-desc">Daily gold price setting, spread configuration, manual override with role-based control</div></div>
+    <div class="mod-card"><div class="mod-num">03</div><div class="mod-name">Receiving (Gold Inbound)</div><div class="mod-desc">Record gold received from craftsmen, factories, or counterparties by weight and SKU</div></div>
+    <div class="mod-card"><div class="mod-num">04</div><div class="mod-name">Sales Transaction</div><div class="mod-desc">Buy/sell gold transactions with VAT, WHT, labor cost, discount, and credit limit validation</div></div>
+    <div class="mod-card"><div class="mod-num">05</div><div class="mod-name">Net Settlement</div><div class="mod-desc">Deal/Ticket creation, FIFO allocation, and net settlement of gold and cash positions</div></div>
+    <div class="mod-card"><div class="mod-num">06</div><div class="mod-name">Trading &amp; NOP Management</div><div class="mod-desc">Real-time Net Open Position tracking, Hedging support, average price calculation</div></div>
+    <div class="mod-card"><div class="mod-num">07</div><div class="mod-name">Inventory Management</div><div class="mod-desc">Container/LPN-based stock tracking, movement history, chamber and layer location</div></div>
+    <div class="mod-card"><div class="mod-num">08</div><div class="mod-name">Finance &amp; Accounting</div><div class="mod-desc">Payment recording, VAT/WHT management, invoice generation, financial ledger</div></div>
+    <div class="mod-card"><div class="mod-num">09</div><div class="mod-name">Gold Transfer</div><div class="mod-desc">Internal and intercompany gold movement with ledger recording and audit trail</div></div>
+    <div class="mod-card"><div class="mod-num">10</div><div class="mod-name">WIP — Send to Factory</div><div class="mod-desc">Track gold sent to refinery or factory in Work-in-Progress status until returned</div></div>
+    <div class="mod-card"><div class="mod-num">11</div><div class="mod-name">Reporting &amp; Dashboard</div><div class="mod-desc">Daily closing summaries, NOP reports, transaction history, and business analytics</div></div>
+  </div>
+
+  <div class="tools-row reveal" style="margin-top:32px;">
+    <span class="tool-tag dark">Figma</span>
+    <span class="tool-tag dark">FSD v1.1</span>
+    <span class="tool-tag dark">RBAC Design</span>
+    <span class="tool-tag dark">Enterprise UX</span>
+    <span class="tool-tag gold">Gold Trading Domain Research</span>
+    <span class="tool-tag gold">Process Flow Mapping</span>
+    <span class="tool-tag gold">Multi-Role UI Patterns</span>
+    <span class="tool-tag gold">Data-Dense Dashboard Design</span>
+  </div>
+</section>
+
+<!-- ═══ S2: PROBLEM ═══ -->
+<section id="problem">
+  <span class="sec-tag">02 — Problem Statement</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">A Volatile Business Without a System to Match</h2>
+  <p class="sec-lead reveal">Gold trading is fast, high-value, and high-risk. Every second of price delay or data inconsistency is a business liability.</p>
+
+  <div class="prob-grid">
+    <div>
+      <div class="prob-statement reveal">
+        <div class="prob-statement-label">Core Problem</div>
+        <div class="prob-statement-text">"Chiab Seng Heng's gold trading operations span multiple departments, 9 user roles, and thousands of daily transactions — all managed without a unified, real-time system capable of locking deal prices, tracking net positions, and providing a full audit trail."</div>
+      </div>
+      <ul class="prob-list reveal">
+        <li>Gold prices change every few seconds. Without a system to instantly lock the agreed price at Deal creation, discrepancies between what was agreed and what was recorded create financial risk and disputes.</li>
+        <li>Transactions flow across Sales → Accounting → Finance → Refinery departments. Without a shared platform, each department works from fragmented information — causing delays, errors, and duplicated effort.</li>
+        <li>Net Open Position (NOP) — the critical measure of the business's gold exposure — cannot be tracked in real time, leaving management unable to respond to price movements or make informed hedging decisions.</li>
+        <li>Container-based inventory (tracking gold by physical tray, box, or pin using LPN codes) is error-prone without a system, making stock discrepancies difficult to detect or trace.</li>
+        <li>Old gold buyback requires solder (น้ำประสาน) deduction calculations that are currently performed manually, leading to inconsistent results and potential disputes with customers.</li>
+        <li>Nine distinct user roles with different permissions require a strict access control system — which cannot be reliably enforced through manual processes or simple tools.</li>
+        <li>There is no structured audit trail. Without one, the business cannot demonstrate compliance, resolve disputes, or trace the source of errors back to a specific user and timestamp.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="impact-cards reveal">
+        <div class="impact-card">
+          <div class="ic-icon">⚡</div>
+          <div class="ic-title">Price Volatility Risk</div>
+          <div class="ic-desc">Gold prices change in seconds. Every transaction must be timestamped and price-locked at the moment of agreement — not when paperwork catches up.</div>
+        </div>
+        <div class="impact-card">
+          <div class="ic-icon">🔗</div>
+          <div class="ic-title">Fragmented Workflow</div>
+          <div class="ic-desc">5 departments (Sales, Accounting, Finance, Refinery, Trader) with no shared data layer — creating handoff delays, lost records, and parallel reconciliation work.</div>
+        </div>
+        <div class="impact-card">
+          <div class="ic-icon">📊</div>
+          <div class="ic-title">Invisible Risk Exposure</div>
+          <div class="ic-desc">Without real-time NOP tracking, management cannot see whether the business is Long or Short on gold at any moment — a critical gap in risk management.</div>
+        </div>
+        <div class="impact-card">
+          <div class="ic-icon">🔒</div>
+          <div class="ic-title">No Audit Trail</div>
+          <div class="ic-desc">No structured log of who did what, when, and what changed. Any dispute, error, or compliance question is nearly impossible to resolve with confidence.</div>
+        </div>
+        <div class="impact-card">
+          <div class="ic-icon">⚖️</div>
+          <div class="ic-title">Calculation Inconsistency</div>
+          <div class="ic-desc">Manual solder deduction, labor cost calculation, and credit limit checks are inconsistent across staff — creating customer experience problems and margin leakage.</div>
+        </div>
+        <div class="impact-card">
+          <div class="ic-icon">🏭</div>
+          <div class="ic-title">Refinery Tracking Gap</div>
+          <div class="ic-desc">Gold sent to refinery for processing enters a black box — no WIP status, no weight tracking, no automatic reconciliation when returned. High risk of loss or dispute.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S3: RESEARCH ═══ -->
+<section id="research">
+  <span class="sec-tag">03 — Research &amp; Discovery</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">Building Understanding First</h2>
+  <p class="sec-lead reveal">Designing a gold trading system requires deep domain knowledge before a single wireframe is drawn. We invested heavily in understanding the business before designing the solution.</p>
+
+  <div class="research-grid reveal">
+    <div class="r-card">
+      <div class="r-icon">🎯</div>
+      <div class="r-title">Research Goals</div>
+      <div class="r-body">Understand the gold trading workflow end-to-end — from price setting and receiving to settlement, NOP calculation, and refinery operations. Map each of 9 roles to their specific tasks, data needs, and decision points.</div>
+    </div>
+    <div class="r-card">
+      <div class="r-icon">🗣️</div>
+      <div class="r-title">Stakeholder Interviews</div>
+      <div class="r-body">Conducted interviews with all key roles: Business Owner (Chiab Seng Heng), Process Improvement Advisor (Dr. Vatcharapol), Project Manager, Lead Developer, and system users across Sales, Accounting, Finance, and Refinery departments.</div>
+    </div>
+    <div class="r-card">
+      <div class="r-icon">📜</div>
+      <div class="r-title">Domain Research</div>
+      <div class="r-body">Deep research into Thai gold trading terminology and industry standards: Ticket/Deal mechanics, FIFO allocation, NOP calculation, Thai Gold Traders Association weight standards (1 บาท = 15.2440g for gold bar, 15.1600g for jewelry), solder deduction rules.</div>
+    </div>
+    <div class="r-card">
+      <div class="r-icon">🔧</div>
+      <div class="r-title">Hardware Integration Research</div>
+      <div class="r-body">Investigated scanner and weighing machine integration — a key business requirement. The system must accept Container ID from barcode/QR scanners and weight values from connected scales, bypassing manual data entry for speed and accuracy.</div>
+    </div>
+    <div class="r-card">
+      <div class="r-icon">🗺️</div>
+      <div class="r-title">Business Process Mapping</div>
+      <div class="r-body">Mapped all 11 core business workflows as process flow diagrams (recorded in FSD). Each flow was reviewed with stakeholders to verify accuracy before UI design began, establishing a shared understanding of every system state and transition.</div>
+    </div>
+    <div class="r-card">
+      <div class="r-icon">🔐</div>
+      <div class="r-title">Access &amp; Security Analysis</div>
+      <div class="r-body">Analysed permission requirements for all 9 roles across 11 modules. Produced a full RBAC matrix showing C/E/D/V permissions and additional privileges (e.g., Approve Settlement, Manual Price Override, Intercompany Transfer) to guide UI access control design.</div>
+    </div>
+  </div>
+
+  <div class="finding-cards reveal">
+    <div class="finding-card">
+      <div class="fc-label">Critical Finding — Price Lock</div>
+      <div class="fc-quote">"Once a Deal or Ticket is confirmed, the price must be locked and immutable. Any subsequent change to the gold market price cannot retroactively affect a confirmed transaction — this is both a business requirement and a regulatory necessity."</div>
+    </div>
+    <div class="finding-card">
+      <div class="fc-label">Critical Finding — FIFO Complexity</div>
+      <div class="fc-quote">"Net Settlement must process account ledger entries (ป้าย) in FIFO order, automatically moving fully-settled entries to 'Empty' status. But users need the flexibility to override FIFO allocation for operational reasons — a tension that shapes the entire Settlement UI."</div>
+    </div>
+    <div class="finding-card">
+      <div class="fc-label">Critical Finding — Role Speed Difference</div>
+      <div class="fc-quote">"Sales staff need to create transactions in seconds — they're talking to a customer. Accounting and Finance staff need the same data, but with more time to verify, attach evidence, and post to the ledger. The same data must support two very different workflows and time pressures."</div>
+    </div>
+    <div class="finding-card">
+      <div class="fc-label">Critical Finding — Old Gold Complexity</div>
+      <div class="fc-quote">"Old gold buyback is not a simple transaction. It requires identifying the type of old gold, applying solder deduction rules (น้ำประสาน), assigning a 'Old Gold' status in the system automatically, and displaying remaining old gold inventory broken down by sub-type. This is entirely invisible to standard e-commerce inventory thinking."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S4: DEFINE ═══ -->
+<section id="define">
+  <span class="sec-tag">04 — Define &amp; Ideate</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">Translating Domain Knowledge Into Design Direction</h2>
+  <p class="sec-lead reveal">With the business process fully mapped, we turned insights into design principles, HMW questions, and a role-permission framework that guided every screen decision.</p>
+
+  <h3 class="reveal" style="color:rgba(255,255,255,0.5);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">How Might We Questions</h3>
+  <div class="hmw-grid reveal">
+    <div class="hmw-card">
+      <div class="hmw-tag">Speed &amp; Accuracy</div>
+      <div class="hmw-text">How might we enable a Sales staff member to create a Deal and lock a gold price in under 30 seconds — without sacrificing the audit information the system needs to record?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-tag">Role Clarity</div>
+      <div class="hmw-text">How might we design one system that presents each of 9 user roles with exactly the information and actions relevant to them — without building 9 separate interfaces?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-tag">NOP Visibility</div>
+      <div class="hmw-text">How might we surface Net Open Position (NOP) in a way that a Trader or Owner can read the business's gold exposure at a glance and act within seconds of a price movement?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-tag">SKU Complexity</div>
+      <div class="hmw-text">How might we expose an 8-level SKU hierarchy to users without requiring them to understand the full structure — letting them search, scan, or navigate to what they need quickly?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-tag">Settlement Flow</div>
+      <div class="hmw-text">How might we make Net Settlement and FIFO allocation intuitive for Accounting staff who are balancing multiple open Tickets against available transactions simultaneously?</div>
+    </div>
+    <div class="hmw-card">
+      <div class="hmw-tag">Audit &amp; Compliance</div>
+      <div class="hmw-text">How might we make the audit trail feel invisible to users doing their work, while ensuring every action — create, edit, approve, cancel, override — is captured with timestamp and user context?</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="color:rgba(255,255,255,0.5);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:40px 0 18px;">Design Principles</h3>
+  <div class="principles-row reveal">
+    <div class="principle">
+      <div class="p-num">01</div>
+      <div class="p-title">Speed Above All for Transactional Roles</div>
+      <div class="p-body">Sales and Trading interfaces must be optimised for speed — keyboard-first, minimal clicks, scanner-compatible — because every second costs money in a volatile gold market.</div>
+    </div>
+    <div class="principle">
+      <div class="p-num">02</div>
+      <div class="p-title">Data Density Without Overwhelm</div>
+      <div class="p-body">Enterprise users need to see a lot of data simultaneously. The design must be information-rich without being visually chaotic — clear hierarchy, consistent type scale, and decisive use of colour to encode status.</div>
+    </div>
+    <div class="principle">
+      <div class="p-num">03</div>
+      <div class="p-title">Role-Adaptive, Not Role-Separate</div>
+      <div class="p-body">One design system adapts to 9 roles by showing or hiding modules, actions, and data fields based on the logged-in role. The interface learns who you are and adjusts — it doesn't force users into separate products.</div>
+    </div>
+    <div class="principle">
+      <div class="p-num">04</div>
+      <div class="p-title">Immutability as a Visual Signal</div>
+      <div class="p-body">Once a Deal is confirmed, it is locked. The UI must visually communicate this state — grayed edit controls, lock icons, read-only fields — so users never try to change something that cannot be changed.</div>
+    </div>
+    <div class="principle">
+      <div class="p-num">05</div>
+      <div class="p-title">Hardware-First Data Entry</div>
+      <div class="p-body">Barcode scanner and weighing machine inputs must feel native — scan a Container ID or place gold on a scale, and the system receives the data. Manual typing is the fallback, not the primary mode.</div>
+    </div>
+    <div class="principle">
+      <div class="p-num">06</div>
+      <div class="p-title">Auditability Is Infrastructure</div>
+      <div class="p-body">Every action writes to the audit log. Users don't need to think about this — but the system must expose a clear, queryable history view for Admins and Owners at any time.</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="color:rgba(255,255,255,0.5);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;margin:40px 0 14px;">Role × Module Permission Matrix (Simplified)</h3>
+  <div class="role-matrix reveal">
+    <div class="rm-header">
+      <div class="rm-head">Module</div>
+      <div class="rm-head">ADM</div><div class="rm-head">OWN</div><div class="rm-head">MGR</div>
+      <div class="rm-head">SAL</div><div class="rm-head">ACC</div><div class="rm-head">FIN</div>
+      <div class="rm-head">REF</div><div class="rm-head">TRD</div><div class="rm-head">RO</div>
+    </div>
+    <div class="rm-row"><div class="rm-module">Master Data</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">Price Management</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm partial">C/E</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">Receiving</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm partial">C/E</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">Sales Transaction</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm partial">C/E</div><div class="rm-perm partial">C/E</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">Deal / Net Settlement</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm view">V</div><div class="rm-perm partial">C/E</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">Trading &amp; NOP</div><div class="rm-perm full">C/E/D</div><div class="rm-perm full">C/E/D</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">Finance &amp; Accounting</div><div class="rm-perm full">C/E/D</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm partial">C/E</div><div class="rm-perm partial">C/E</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div><div class="rm-perm view">V</div></div>
+    <div class="rm-row"><div class="rm-module">System Config</div><div class="rm-perm full">C/E/D</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div><div class="rm-perm none">—</div></div>
+  </div>
+</section>
+
+<!-- ═══ S5: DESIGN PROCESS ═══ -->
+<section id="design">
+  <span class="sec-tag">05 — Design Process</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">From Business Process to Interface</h2>
+  <p class="sec-lead reveal">The design process was structured around the 11 business workflows defined in the FSD — each module's process flow diagram became the foundation for its UI screens.</p>
+
+  <div class="design-phases reveal">
+    <div class="phase"><div class="ph-num">01</div><div class="ph-title">FSD → Process Flow</div><div class="ph-body">Each of 11 modules documented as process flow diagrams with all states, transitions, and role-specific steps.</div></div>
+    <div class="phase"><div class="ph-num">02</div><div class="ph-title">Information Architecture</div><div class="ph-body">Navigation structure designed around role-based module access. 9 roles see different menu items and page states.</div></div>
+    <div class="phase"><div class="ph-num">03</div><div class="ph-title">UI_D2 Wireframes</div><div class="ph-body">Mid-fidelity wireframes for all 11 modules — focused on data layout, form logic, table structures, and action flows.</div></div>
+    <div class="phase"><div class="ph-num">04</div><div class="ph-title">Component Design</div><div class="ph-body">Built a reusable component set: data tables, form inputs, status badges, modals, price boards, and confirmation dialogs.</div></div>
+    <div class="phase"><div class="ph-num">05</div><div class="ph-title">UI_Final Screens</div><div class="ph-body">High-fidelity Figma screens for all modules — annotated with business rules, role permissions, and interaction states.</div></div>
+  </div>
+
+  <div class="screens-grid reveal">
+
+    <!-- Price Management -->
+    <div class="screen-card">
+      <div class="screen-topbar">
+        <div class="screen-dot2"></div><div class="screen-dot2"></div><div class="screen-dot2"></div>
+        <div class="screen-url2">ces.classicgold.th/price-management</div>
+      </div>
+      <div class="screen-body2">
+        <div class="screen-label2">Module 02</div>
+        <div class="screen-name2">Price Management</div>
+        <div class="screen-desc2">Real-time gold reference price with configurable spread. Displays buy/sell prices auto-calculated from spread. Manual override available for authorised roles.</div>
+        <div class="mock-price-board">
+          <div class="mpb-row">
+            <span class="mpb-type">ทองคำแท่ง 99.99%</span>
+            <span class="mpb-buy mpb-price">฿47,800</span>
+            <span class="mpb-sell mpb-price">฿47,900</span>
+            <span class="mpb-spread">Spread: ฿100</span>
+          </div>
+          <div class="mpb-row">
+            <span class="mpb-type">ทองรูปพรรณ 96.5%</span>
+            <span class="mpb-buy mpb-price">฿46,350</span>
+            <span class="mpb-sell mpb-price">฿47,150</span>
+            <span class="mpb-spread">Spread: ฿800</span>
+          </div>
+          <div class="mpb-row">
+            <span class="mpb-type">ราคาอ้างอิง (Ref.)</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.5);">฿47,850</span>
+            <span class="mpb-spread">Effective: 09:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deal / Ticket -->
+    <div class="screen-card">
+      <div class="screen-topbar">
+        <div class="screen-dot2"></div><div class="screen-dot2"></div><div class="screen-dot2"></div>
+        <div class="screen-url2">ces.classicgold.th/deals/new</div>
+      </div>
+      <div class="screen-body2">
+        <div class="screen-label2">Module 05</div>
+        <div class="screen-name2">Deal / Ticket Creation</div>
+        <div class="screen-desc2">Create a Deal with agreed price, direction (Buy/Sell), weight, and counterparty. Price is locked at creation and cannot be changed after confirmation.</div>
+        <div class="mock-ticket">
+          <div class="mt-header">
+            <span class="mt-id">TK-240905</span>
+            <span class="mt-status">DRAFT</span>
+          </div>
+          <div class="mt-field"><span class="mt-key">Type</span><span class="mt-val">ซื้อเข้า (Buy)</span></div>
+          <div class="mt-field"><span class="mt-key">Counterparty</span><span class="mt-val">บริษัท XYZ</span></div>
+          <div class="mt-field"><span class="mt-key">Weight</span><span class="mt-val">50.00 บาท</span></div>
+          <div class="mt-field"><span class="mt-key">Agreed Price</span><span class="mt-val" style="color:var(--gold-bright);">฿47,850 / บาท</span></div>
+          <div class="mt-field"><span class="mt-key">Total Value</span><span class="mt-val">฿2,392,500</span></div>
+          <div class="mt-field"><span class="mt-key">SKU</span><span class="mt-val">J1-BAR-99.99-…</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOP Dashboard -->
+    <div class="screen-card">
+      <div class="screen-topbar">
+        <div class="screen-dot2"></div><div class="screen-dot2"></div><div class="screen-dot2"></div>
+        <div class="screen-url2">ces.classicgold.th/nop</div>
+      </div>
+      <div class="screen-body2">
+        <div class="screen-label2">Module 06</div>
+        <div class="screen-name2">Net Open Position (NOP)</div>
+        <div class="screen-desc2">Real-time net gold position tracker. Shows starting NOP, cumulative buys/sells, and resulting net position — with Long/Short status indicator for risk management.</div>
+        <div class="mock-nop">
+          <div class="nop-gauge">
+            <div class="nop-val">+62.5 บาท</div>
+            <div class="nop-label">LONG POSITION</div>
+          </div>
+          <div class="nop-bar"><div class="nop-bar-fill"></div></div>
+          <div class="nop-row"><span class="nop-key">NOP ตั้งต้น (S)</span><span class="nop-v">50.0 บาท</span></div>
+          <div class="nop-row"><span class="nop-key">ซื้อสะสม (A)</span><span class="nop-v">+30.0 บาท</span></div>
+          <div class="nop-row"><span class="nop-key">ขายสะสม (B)</span><span class="nop-v">−17.5 บาท</span></div>
+          <div class="nop-row"><span class="nop-key">Net Position วันนี้</span><span class="nop-v" style="color:#5CDB95;">+12.5 บาท</span></div>
+          <div class="nop-row"><span class="nop-key">Avg. Price</span><span class="nop-v" style="color:var(--gold-bright);">฿47,692</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-grid reveal">
+    <div class="comp-card">
+      <div class="comp-title">SKU Hierarchy Navigation</div>
+      <div class="comp-body">Designed an 8-level SKU navigation component — users can drill down from Asset Division → Product Category → Sub-Category → Design → Supplier → Weight → Size, or scan a product barcode to jump directly to the matching SKU. Partial-match search allows typing any segment of the SKU string to narrow results quickly.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-title">Net Settlement &amp; Allocation Interface</div>
+      <div class="comp-body">The Settlement screen shows open Tickets on one side and available transactions (ป้าย) on the other — ordered by date for FIFO guidance but allowing free selection. Running totals update in real time as users allocate items, with a clear "Remaining" counter that must reach zero to complete settlement.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-title">Container/LPN Inventory View</div>
+      <div class="comp-body">Inventory is viewed by Chamber → Layer → Container. Each Container shows its LPN code, type (Pin/Tray/Box/Bag), current contents by SKU, and weight. Scanning a Container barcode jumps directly to that Container's contents page. Movement history is accessible from any Container record.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-title">Financial Ledger &amp; Payment Attachment</div>
+      <div class="comp-body">Finance staff see a transaction queue with payment status (Pending / Paid / Partial). Each transaction supports payment method selection, amount entry, and file attachment (slip/evidence upload). VAT and WHT toggle independently per transaction, with calculated amounts shown inline before confirmation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S6: TESTING ═══ -->
+<section id="testing">
+  <span class="sec-tag">06 — Testing &amp; Validation</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">Validation at the Design Stage</h2>
+  <p class="sec-lead reveal">The system is still under active development. Formal UAT with business users has not yet been conducted — but validation has been structured throughout the design and specification process.</p>
+
+  <div class="dev-banner reveal">
+    <div class="dev-icon">⚠️</div>
+    <div class="dev-text"><strong>In Development — No UAT Conducted Yet.</strong> All acceptance criteria defined in the Functional Specification Document (FSD v1.1) serve as the planned test basis for future UAT. The design has been internally reviewed and approved by all stakeholders listed in the FSD, but real-user testing awaits development completion.</div>
+  </div>
+
+  <div class="testing-grid">
+    <div>
+      <div class="test-methods reveal">
+        <div class="test-method">
+          <div class="tm-icon">📋</div>
+          <div>
+            <div class="tm-title">FSD-Based Acceptance Criteria</div>
+            <div class="tm-body">Each of the 11 modules in the FSD contains explicit Acceptance Criteria (AC) that were written during the design phase. These define exactly what the system must do to be accepted by the business — and form the basis for all future UAT sessions.</div>
+          </div>
+        </div>
+        <div class="test-method">
+          <div class="tm-icon">✅</div>
+          <div>
+            <div class="tm-title">Stakeholder Design Review</div>
+            <div class="tm-body">FSD v1.1 was reviewed and signed off by all key stakeholders: PM (Chakrit), Lead Developer (Preeyapol), Principal Software (Monthon), Process Advisor (Vatcharapol), and the Business Owner (Chiab Seng Heng) — confirming that the designed system aligns with business requirements before development.</div>
+          </div>
+        </div>
+        <div class="test-method">
+          <div class="tm-icon">🔄</div>
+          <div>
+            <div class="tm-title">Business Rule Validation</div>
+            <div class="tm-body">All business rules (BR codes) in the FSD were verified against real business processes through stakeholder interviews. Examples: BR-PM-10 (price lock after Deal confirmation), BR-TR-04 (FIFO settlement order), BR-MD-05 (1 บาท = 15.2440g standard).</div>
+          </div>
+        </div>
+        <div class="test-method">
+          <div class="tm-icon">🔒</div>
+          <div>
+            <div class="tm-title">Audit Log Planning</div>
+            <div class="tm-body">The system's audit trail requirement (90-day minimum retention, capturing Timestamp, User ID, Role, Action, Module, Record ID, Before/After values, and IP address) was designed and specified — ready for implementation and future audit review testing.</div>
+          </div>
+        </div>
+        <div class="test-method">
+          <div class="tm-icon">🔮</div>
+          <div>
+            <div class="tm-title">Planned: Formal UAT</div>
+            <div class="tm-body">Once development completes, UAT sessions will be conducted with real users from each of the 9 roles — starting with Sales and Accounting (highest-frequency users), then Refinery and Trading, then Finance, Manager, and Owner review sessions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="color:rgba(255,255,255,0.5);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Acceptance Criteria Coverage by Module</h3>
+      <table class="ac-table">
+        <thead>
+          <tr><th>Module</th><th>AC Count</th><th>Key Criteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Master Data</td><td><span class="ac-count">AC-01→10</span></td><td>Unique codes, Inactive-not-delete, SKU Hierarchy required, credit validation</td></tr>
+          <tr><td>Receiving</td><td><span class="ac-count">AC-01→13</span></td><td>Scanner integration, LPN required, weight &gt; 0, inventory auto-update</td></tr>
+          <tr><td>Sales Transaction</td><td><span class="ac-count">AC-01→16</span></td><td>Gold/Financial ledger updates, old gold auto-status, scanner SKU lookup, external API</td></tr>
+          <tr><td>Net Settlement</td><td><span class="ac-count">AC-01→12</span></td><td>FIFO order display, allocation ≤ Ticket total, price lock, outstanding balance calc</td></tr>
+          <tr><td>NOP Management</td><td><span class="ac-count">AC-01→09</span></td><td>Auto NOP update, SKU-level display, Reverse Ticket support, Ledger accuracy</td></tr>
+          <tr><td>Finance &amp; Accounting</td><td><span class="ac-count">AC-01→11</span></td><td>Payment attachment, VAT/WHT tracking, Invoice generation, Audit Trail</td></tr>
+          <tr><td>Gold Transfer</td><td><span class="ac-count">AC-01→07</span></td><td>Source/destination required, no over-transfer, Intercompany ledger entry</td></tr>
+          <tr><td>WIP (Factory)</td><td><span class="ac-count">AC-01→08</span></td><td>WIP status on transfer, no duplicate reference, old gold type breakdown</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S7: OUTCOMES ═══ -->
+<section id="outcomes">
+  <span class="sec-tag">07 — Outcomes &amp; Impact</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">What Has Been Delivered So Far</h2>
+  <p class="sec-lead reveal">Because the system is in development with no live deployment yet, measured outcomes are not available. What follows is a summary of what has been designed, specified, and signed off.</p>
+
+  <div class="metrics-row reveal">
+    <div class="metric-card">
+      <div class="metric-num">11</div>
+      <div class="metric-label">Functional Modules designed and specified</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">9</div>
+      <div class="metric-label">User roles with distinct permission matrices</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">80+</div>
+      <div class="metric-label">Acceptance Criteria defined across all modules</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">v1.1</div>
+      <div class="metric-label">FSD version reviewed and approved by all stakeholders</div>
+    </div>
+  </div>
+
+  <div class="outcomes-grid reveal">
+    <div class="outcomes-col">
+      <h3>Design &amp; Specification Deliverables</h3>
+      <ul class="outcome-list">
+        <li>Complete Functional Specification Document (FSD v1.1, March 2026) — reviewed and signed off by all stakeholders including the Business Owner.</li>
+        <li>High-fidelity Figma design files across UI_D2 (design iteration) and UI_Final pages, covering all 11 modules with annotated screens and interaction states.</li>
+        <li>Full RBAC permission matrix across 9 roles and 11 modules — including additional privileges (Approve Settlement, Manual Price Override, Intercompany Transfer, etc.).</li>
+        <li>8-level SKU Hierarchy structure with documented field naming, code format, and example SKUs (e.g., J1-NEC-HOL-CHA-D00001-F0001-B00100-L0205).</li>
+        <li>11 process flow diagrams — one per business process — validated by stakeholders as accurate representations of the target operational workflow.</li>
+      </ul>
+    </div>
+    <div class="outcomes-col">
+      <h3>System Design Achievements</h3>
+      <ul class="outcome-list">
+        <li>Designed a price-locking mechanism (BR-PM-10) that freezes the agreed deal price at Ticket confirmation — preventing retroactive price disputes.</li>
+        <li>Specified real-time NOP calculation with Net Position (Today) = Total Buy (A) − Total Sell (B) and Net Position (Total) = NOP Start (S) + A − B, with Long/Short/Neutral status display.</li>
+        <li>Designed hardware integration touchpoints for barcode scanner (SKU and LPN lookup) and weighing machine (weight entry) — eliminating manual input error at two of the highest-risk data entry points.</li>
+        <li>Specified a 90-day audit log with 9 fields (Timestamp, User ID, Role, Action, Module, Record ID, Before/After values, IP) — giving the business a fully traceable history for compliance and dispute resolution.</li>
+        <li>Designed a solder deduction rule engine and old gold sub-type tracking — solving one of the most domain-specific and previously manual calculation problems in the business.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="deliverables-row reveal">
+    <div class="del-card">
+      <div class="del-icon">📐</div>
+      <div class="del-title">Figma Design File — ClassicGold</div>
+      <div class="del-body">UI_D2 (iteration) and UI_Final pages covering all 11 modules, annotated with business rules, role-specific states, and interaction notes for the development team.</div>
+    </div>
+    <div class="del-card">
+      <div class="del-icon">📄</div>
+      <div class="del-title">FSD v1.1 — Functional Specification</div>
+      <div class="del-body">Complete 90+ page specification covering all modules, business rules, acceptance criteria, RBAC matrix, process flows, terminology definitions, and stakeholder approvals.</div>
+    </div>
+    <div class="del-card">
+      <div class="del-icon">🔄</div>
+      <div class="del-title">UAT Test Plan (Pending)</div>
+      <div class="del-body">Acceptance criteria from the FSD serve as the planned UAT basis. Role-based test scenarios will be derived from each AC set once development reaches a testable state.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S8: REFLECTION ═══ -->
+<section id="reflection">
+  <span class="sec-tag">08 — Reflection &amp; Learnings</span>
+  <div class="gold-rule"></div>
+  <h2 class="sec-title reveal">What This Project Has Taught Me</h2>
+  <p class="sec-lead reveal">Designing an enterprise system for a specialised industry requires a very different mindset from consumer product design. Here is what I have taken away from this project so far.</p>
+
+  <div class="reflection-cols reveal">
+    <div class="ref-col">
+      <h3>✅ What's Going Well</h3>
+      <ul class="ref-list">
+        <li><span class="ref-icon">📜</span>The FSD-first approach — documenting every business rule and acceptance criterion before designing screens — has prevented scope creep and kept the design grounded in real business needs, not designer assumptions.</li>
+        <li><span class="ref-icon">🏦</span>Deep domain immersion paid off. Understanding Thai gold trading terminology (NOP, ป้าย, มาทอง, ไปเงิน, รวดรัด) before designing allowed the UI to speak the language of its users, not translate it.</li>
+        <li><span class="ref-icon">🔐</span>Designing the RBAC matrix before any screen was particularly valuable — it forced early decisions about what each role should see or not see, preventing costly redesigns during development.</li>
+        <li><span class="ref-icon">🤝</span>Stakeholder sign-off on FSD v1.1 — across the PM, Lead Developer, Principal Software Engineer, Process Advisor, and Business Owner — created a shared contract that protects the design vision through development.</li>
+        <li><span class="ref-icon">⚡</span>Thinking about hardware integration (scanner, scale) from day one shaped the entire transaction entry UX to be fast and error-resistant, not just visually polished.</li>
+      </ul>
+    </div>
+    <div class="ref-col">
+      <h3>⚠️ Challenges &amp; What I'd Do Differently</h3>
+      <ul class="ref-list">
+        <li><span class="ref-icon">🧪</span>Designing without UAT creates uncertainty. I've made assumptions about how Sales staff will use the Ticket creation screen under time pressure — these assumptions need real-world validation before we can be confident the flow is fast enough.</li>
+        <li><span class="ref-icon">📱</span>The current design is desktop-first. Gold trading operations also happen on the move — I'd want to explore a mobile-adapted view for at least the Price Management and NOP modules for Traders and Owners who may not always be at a desk.</li>
+        <li><span class="ref-icon">♿</span>Accessibility has not been formally evaluated. With data-dense tables, colour-coded status indicators, and fine typography, the design needs a WCAG 2.1 audit — particularly for contrast ratios in the dark-theme sections.</li>
+        <li><span class="ref-icon">🏗️</span>The NOP and Settlement modules are the most complex — I'd want to run moderated usability sessions with Accounting and Trading staff specifically, as these are the flows where cognitive load is highest and errors are most costly.</li>
+        <li><span class="ref-icon">📖</span>The business terminology (มาเงิน/มาทอง/ไปเงิน/ไปทอง, ปิ ง, ถอย) is highly specific. A contextual help system or glossary embedded in the UI would reduce onboarding time for new staff — something I'd add to the next design iteration.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="color:rgba(255,255,255,0.5);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Key Learnings</h3>
+  <div class="learnings-grid reveal">
+    <div class="learning-card">
+      <div class="lc-icon">🏦</div>
+      <div class="lc-title">Domain Depth Is Non-Negotiable</div>
+      <div class="lc-body">You cannot design an enterprise system for a specialised industry without becoming fluent in that industry. Every UI decision in CES is downstream of a business rule — and you can't design the rule correctly without understanding the domain.</div>
+    </div>
+    <div class="learning-card">
+      <div class="lc-icon">⚡</div>
+      <div class="lc-title">Speed Is a Design Requirement</div>
+      <div class="lc-body">In consumer apps, speed matters for delight. In a gold trading system, speed is a financial requirement. A Deal entry that takes 30 seconds longer than necessary is 30 seconds of price risk. Designing for speed forces a different level of rigour than designing for aesthetics.</div>
+    </div>
+    <div class="learning-card">
+      <div class="lc-icon">🔐</div>
+      <div class="lc-title">RBAC Is a Design Problem</div>
+      <div class="lc-body">Designing role-based access is not just a backend problem. Every screen, button, field, and action must be designed with role context in mind. The earlier you build the permission matrix into the design system, the less painful the implementation is.</div>
+    </div>
+    <div class="learning-card">
+      <div class="lc-icon">📜</div>
+      <div class="lc-title">Specification Is Design</div>
+      <div class="lc-body">Writing FSD business rules and acceptance criteria is as much a design act as drawing screens. The quality of your specification determines the quality of what gets built — and a poorly-specified acceptance criterion is a failed design decision waiting to happen.</div>
+    </div>
+    <div class="learning-card">
+      <div class="lc-icon">🤝</div>
+      <div class="lc-title">Cross-Discipline Alignment Is Foundational</div>
+      <div class="lc-body">A five-stakeholder sign-off process sounds slow. But it prevented misunderstandings between design intent and technical interpretation — and gave the project a shared contract to return to when decisions got contentious during development.</div>
+    </div>
+    <div class="learning-card">
+      <div class="lc-icon">🔮</div>
+      <div class="lc-title">Designing Without Feedback Is Risky</div>
+      <div class="lc-body">The biggest open question in this project is: does the design actually work under real operational conditions? No amount of stakeholder review fully replaces watching a Sales person under time pressure try to lock a Deal price. UAT is the most important next step.</div>
+    </div>
+  </div>
+
+  <div class="next-steps-box reveal">
+    <h3>Next Steps &amp; Future Considerations</h3>
+    <div class="next-grid">
+      <div class="next-item">
+        <div class="next-num">1</div>
+        <div class="next-text"><strong>Conduct Formal UAT</strong>Schedule UAT sessions with real users from each role — starting with Sales (Deal creation, speed testing) and Accounting (Settlement flows) as the highest-risk user journeys.</div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">2</div>
+        <div class="next-text"><strong>Accessibility Audit</strong>Run a WCAG 2.1 audit on the UI_Final screens — particularly dark-theme contrast ratios, colour-only status encoding, and keyboard navigation in the Settlement allocation interface.</div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">3</div>
+        <div class="next-text"><strong>Mobile-Adapted Price &amp; NOP View</strong>Design a responsive or native mobile view for Price Management and NOP — key screens that Traders and Owners need to check on the move, not just at a desk.</div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">4</div>
+        <div class="next-text"><strong>Contextual Glossary &amp; Onboarding</strong>Embed a contextual help system with definitions for gold trading terminology (ป้าย, มาทอง, NOP, etc.) — reducing onboarding time for new staff and reducing support load on senior users.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">🔑 ClassicGold CES</div>
+  <div>Chiab Enterprise System · Functional Specification v1.1 · March 2026</div>
+  <div class="footer-status"><span class="status-dot"></span> In Active Development</div>
+</footer>
+
+<script>
+// Progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06 });
+reveals.forEach(el => io.observe(el));
+// Nav active
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  links.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--gold-bright)' : 'rgba(255,255,255,0.5)';
+  });
+});
+</script>
+</body>
+</html>

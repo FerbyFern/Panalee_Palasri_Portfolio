@@ -66,6 +66,18 @@ const caseStudiesData: CaseStudyItem[] = [
   //   link: '#',
   // },
   {
+    id: 'gold',
+    tag: ['Gold Trading', 'Enterprise System', 'Risk Management'],
+    title: 'Gold — Enterprise System',
+    desc: 'แพลตฟอร์มบริหารจัดการธุรกิจทองคำแบบครบวงจร ตั้งแต่การรับสินค้า, การบริหารราคาแบบ Real-time, ระบบ Net Settlement ไปจนถึงการจัดการความเสี่ยง (NOP) ออกแบบมาเพื่อรองรับ 9 บทบาทผู้ใช้ (RBAC) และ 11 โมดูลหลัก',
+    year: '2026',
+    sortDate: '2026-03-01',
+    duration: 'Jan 2026 – Present',
+    impact: '11 Modules / 9 RBAC Roles',
+    accent: '#C9943A',
+    link: '/work/gold',
+  },
+  {
     id: 'pmsf',
     tag: ['Foundation', 'Web Redesign', 'Responsive'],
     title: 'PMSF — Foundation Website Redesign',

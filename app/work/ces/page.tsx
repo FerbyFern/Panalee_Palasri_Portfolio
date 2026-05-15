@@ -46,11 +46,11 @@ export default function CESCaseStudy() {
         background="#16140F"
         eyebrow="Case Study 04 · Enterprise System · Vansales Application Co., Ltd."
         title={<>CES — Designing for<br /><em style={{ color: '#C9A84C' }}>gold, speed,<br />and zero margin for error.</em></>}
-        subtitle="End-to-end UX/UI design of the Chiab Enterprise System — a 12-module gold trading platform covering price management, buy/sell transactions, Deal/Ticket settlement, NOP tracking, container inventory, and financial reporting."
+        subtitle="End-to-end UX/UI design of the Gold Enterprise System — a 12-module gold trading platform covering price management, buy/sell transactions, Deal/Ticket settlement, NOP tracking, container inventory, and financial reporting."
         chips={[
           { label: 'Timeline', value: 'Jan 2025 – Present' },
           { label: 'Role', value: 'UX/UI Designer (Solo)' },
-          { label: 'Client', value: 'Chiab Seng Heng' },
+          { label: 'Client', value: 'Gold Seng Heng' },
           { label: 'Platform', value: 'Web (Desktop + Tablet)' },
           { label: 'Spec', value: 'FSD v1.1 · 139 pages' },
         ]}
@@ -98,7 +98,7 @@ export default function CESCaseStudy() {
             <h2 className="cs-h2 reveal">A gold shop running on instinct,<br />WhatsApp, and paper ledgers.</h2>
             <div className="cs-overview reveal">
               <p>
-                Chiab Seng Heng is a professional gold trading business operating in Thailand. Their daily work involves buying and selling gold across multiple product types, managing physical inventory by container, sending gold for refining, and settling net positions with trading partners — all while gold prices fluctuate by the second.
+                Gold Seng Heng is a professional gold trading business operating in Thailand. Their daily work involves buying and selling gold across multiple product types, managing physical inventory by container, sending gold for refining, and settling net positions with trading partners — all while gold prices fluctuate by the second.
               </p>
               <p>
                 Before CES, this entire operation ran on a mixture of spreadsheets, manual paper records, and verbal price agreements. Errors were costly. There was no real-time view of their Net Open Position (NOP). Settlement calculations were done by hand. Audit trails were non-existent.
