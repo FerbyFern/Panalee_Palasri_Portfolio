@@ -2951,3 +2951,183 @@ footer {
     display: none;
   }
 }
+
+/* ==========================================================================
+   RESPONSIVE UTILITIES & MOBILE NAVIGATION
+   ========================================================================== */
+
+/* Responsive Grid Utilities */
+.resp-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.resp-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.resp-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.resp-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 900px) {
+  .resp-grid-3, .resp-grid-4, .resp-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .resp-grid-2, .resp-grid-3, .resp-grid-4, .resp-grid-5 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CaseStudyHero Stats Column Responsiveness */
+.stats-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.stats-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .stats-cols-3,
+  .stats-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-cols-3,
+  .stats-cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Hamburger Menu & Drawer Styles */
+.nav-hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000;
+    margin-right: -10px;
+  }
+  
+  .hamburger-box {
+    width: 24px;
+    height: 18px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    width: 24px;
+    height: 2px;
+    background-color: var(--ink);
+    position: absolute;
+    transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+  }
+  
+  .hamburger-inner {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .hamburger-inner::before {
+    content: "";
+    top: -6px;
+  }
+  
+  .hamburger-inner::after {
+    content: "";
+    bottom: -6px;
+  }
+  
+  /* Active Open States */
+  nav.menu-open .hamburger-inner {
+    background-color: transparent;
+  }
+  
+  nav.menu-open .hamburger-inner::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  
+  nav.menu-open .hamburger-inner::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .nav-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 998;
+    padding: 80px 24px;
+  }
+  
+  .nav-right.active {
+    right: 0;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 32px;
+    text-align: center;
+  }
+  
+  .nav-links a {
+    font-size: var(--fs-20);
+  }
+  
+  .nav-download-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 10px 0 0 0;
+    margin-top: 8px;
+    min-width: unset;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+}
+
+/* Hero Section Stat Blocks Responsive Wrap (under 640px) */
+@media (max-width: 640px) {
+  .hero-right {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    padding-top: 24px !important;
+  }
+  .hero-stat-block {
+    border-right: none !important;
+    border-left: 2px solid var(--accent) !important;
+    padding-left: 16px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+    margin-bottom: 0 !important;
+  }
+}

@@ -161,8 +161,7 @@ export default function CaseStudyHero({
 
       {stats?.length ? (
         <div
-          className="cs-hero-stats reveal"
-          style={statsColumns ? { gridTemplateColumns: `repeat(${statsColumns}, 1fr)` } : undefined}
+          className={`cs-hero-stats reveal ${statsColumns ? `stats-cols-${statsColumns}` : ''}`}
         >
           {stats.map((stat) => (
             <div key={String(stat.label)} className="cs-hero-stat">

@@ -213,7 +213,7 @@ export default function GoldCaseStudy() {
         <div className="cs-section-label reveal">05 — Design Process</div>
         <h2 className="cs-h2 reveal">From Process to Interface</h2>
 
-        <div className="cs-domain-grid reveal" style={{ marginTop: '48px', gridTemplateColumns: 'repeat(5, 1fr)' }}>
+        <div className="cs-domain-grid resp-grid-5 reveal" style={{ marginTop: '48px' }}>
           {[
             { n: '01', t: 'FSD → Flow', d: 'Mapping 11 modules as process diagrams.' },
             { n: '02', t: 'Architecture', d: 'Nav structure designed around RBAC.' },

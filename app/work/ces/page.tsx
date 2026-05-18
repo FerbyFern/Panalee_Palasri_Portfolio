@@ -149,7 +149,7 @@ export default function CESCaseStudy() {
         <p className="cs-lead reveal" style={{ marginBottom: '32px' }}>
           Each role needs a fundamentally different view of the same data. Designing the RBAC (Role-Based Access Control) information architecture was one of the core UX challenges.
         </p>
-        <div className="cs-domain-grid reveal" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: '0' }}>
+        <div className="cs-domain-grid resp-grid-3 reveal" style={{ marginBottom: '0' }}>
           {[
             { role: 'Owner / Director', access: 'Full read + financial reports + overrides' },
             { role: 'Accountant', access: 'Settlement, P&L, audit trail, reconciliation' },
@@ -215,7 +215,7 @@ export default function CESCaseStudy() {
         </p>
 
         <h3 className="cs-h3 reveal" style={{ marginBottom: '24px' }}>System Module Map</h3>
-        <div className="cs-domain-grid reveal" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+        <div className="cs-domain-grid resp-grid-4 reveal">
           {[
             { mod: '01', name: 'Price Management', desc: 'Live gold price feed, spread configuration, price history' },
             { mod: '02', name: 'Buy / Sell', desc: 'Customer transactions, product selection, weight entry, receipt' },

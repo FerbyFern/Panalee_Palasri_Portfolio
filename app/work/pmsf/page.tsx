@@ -146,7 +146,7 @@ export default function PMSFCaseStudy() {
         </svg>
 
         <h3 className="cs-h3 reveal" style={{ marginBottom: '24px' }}>Research Insights</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginTop: '24px' }} className="reveal">
+        <div className="resp-grid-3 reveal" style={{ gap: '16px', marginTop: '24px' }}>
           {[
             { label: 'Insight 01 — Audience is diverse', text: "Visitors range from media and government officials to school students and general public. The redesign needed to serve both formal and casual reading contexts simultaneously." },
             { label: 'Insight 02 — Programmes are the core', text: "80% of meaningful visits were programme-related. Yet programmes were buried 3–4 levels deep. Making them front-and-centre was the single highest-impact structural change." },
@@ -192,7 +192,7 @@ export default function PMSFCaseStudy() {
         </p>
 
         <h3 className="cs-h3 reveal" style={{ marginBottom: '24px' }}>Key Design Decisions</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', background: 'var(--border)' }} className="reveal">
+        <div className="resp-grid-2 reveal" style={{ gap: '2px', background: 'var(--border)' }}>
           {[
             { label: 'Colour System', text: 'Deep maroon (#8B1A3A) as the primary brand colour — drawn from the Foundation\'s official palette — paired with clean white space. Warm secondary tones for programme categories (green, amber, blue) provide differentiation without fragmentation.' },
             { label: 'Typography', text: 'A single type family with clear size hierarchy: display heading at 40px+ for authority, body at 16px for readability, labels in uppercase monospace for categorisation. Thai and English text handled with appropriate line-height for both scripts.' },

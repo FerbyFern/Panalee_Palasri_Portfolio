@@ -4,6 +4,7 @@ import Link from "next/link";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDownloadsOpen, setIsDownloadsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const downloadsRef = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
@@ -37,23 +38,35 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={isScrolled ? "scrolled" : ""}>
-      <Link href="/" className="nav-logo">
+    <nav className={`${isScrolled ? "scrolled" : ""} ${isMenuOpen ? "menu-open" : ""}`}>
+      <Link href="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
         Panalee Palasri
       </Link>
-      <div className="nav-right">
+
+      <button
+        className="nav-hamburger"
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+        aria-label="Toggle Navigation Menu"
+        aria-expanded={isMenuOpen}
+      >
+        <span className="hamburger-box">
+          <span className="hamburger-inner"></span>
+        </span>
+      </button>
+
+      <div className={`nav-right ${isMenuOpen ? "active" : ""}`}>
         <ul className="nav-links">
           <li>
-            <Link href="/#work">Work</Link>
+            <Link href="/#work" onClick={() => setIsMenuOpen(false)}>Work</Link>
           </li>
           <li>
-            <Link href="/#about">About</Link>
+            <Link href="/#about" onClick={() => setIsMenuOpen(false)}>About</Link>
           </li>
           <li>
-            <Link href="/#experience">Experience</Link>
+            <Link href="/#experience" onClick={() => setIsMenuOpen(false)}>Experience</Link>
           </li>
           <li>
-            <Link href="/#contact">Contact</Link>
+            <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           </li>
           <li className="nav-download" ref={downloadsRef}>
             <button
@@ -71,13 +84,13 @@ export default function Navbar() {
 
             {isDownloadsOpen && (
               <div className="nav-download-menu" role="menu" aria-label="Download files">
-                <a href="/documents/CV_Panalee_Palasri.pdf" download="CV_Panalee_Palasri.pdf" role="menuitem" onClick={() => setIsDownloadsOpen(false)}>
+                <a href="/documents/CV_Panalee_Palasri.pdf" download="CV_Panalee_Palasri.pdf" role="menuitem" onClick={() => { setIsDownloadsOpen(false); setIsMenuOpen(false); }}>
                   CV
                 </a>
-                <a href="/documents/Resume_Panalee_Palasri.pdf" download="Resume_Panalee_Palasri.pdf" role="menuitem" onClick={() => setIsDownloadsOpen(false)}>
+                <a href="/documents/Resume_Panalee_Palasri.pdf" download="Resume_Panalee_Palasri.pdf" role="menuitem" onClick={() => { setIsDownloadsOpen(false); setIsMenuOpen(false); }}>
                   Resume
                 </a>
-                <a href="/documents/Portfolio_Panalee_Palasri.pdf" target="_blank" rel="noopener noreferrer" role="menuitem" onClick={() => setIsDownloadsOpen(false)}>
+                <a href="/documents/Portfolio_Panalee_Palasri.pdf" target="_blank" rel="noopener noreferrer" role="menuitem" onClick={() => { setIsDownloadsOpen(false); setIsMenuOpen(false); }}>
                   Portfolio PDF
                 </a>
               </div>

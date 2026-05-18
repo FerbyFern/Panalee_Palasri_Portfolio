@@ -74,11 +74,10 @@ export default function VansalesCaseStudy() {
           </div>
         </div>
 
-        <div className="cs-outcome-stats reveal reveal-delay-4" style={{ 
+        <div className="cs-outcome-stats resp-grid-4 reveal reveal-delay-4" style={{ 
           background: 'rgba(255,255,255,0.07)', 
           borderTop: '1px solid rgba(255,255,255,0.1)', 
-          marginTop: '80px',
-          gridTemplateColumns: 'repeat(4, 1fr)'
+          marginTop: '80px'
         }}>
           <div className="cs-stat">
             <div className="cs-stat-num">2</div>
@@ -186,7 +185,7 @@ export default function VansalesCaseStudy() {
           <div style={{ fontStyle: 'italic', padding: '20px 32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', marginTop: '20px', fontSize: 'var(--fs-17)', color: 'var(--ink-soft)' }}>
             "I'm on the road from 7am. I need everything to just work — I can't be filling in forms for 20 minutes between customer visits."
           </div>
-          <div style={{ padding: '24px 32px 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          <div className="resp-grid-2" style={{ padding: '24px 32px 32px', gap: '24px' }}>
             <div>
               <div style={{ color: 'var(--accent)', fontSize: 'calc(9px * var(--type-scale))', marginBottom: '12px', letterSpacing: '.18em' }}>GOALS</div>
               <ul style={{ listStyle: 'none', fontSize: 'var(--fs-12)', color: 'var(--ink-soft)' }}>
@@ -204,7 +203,7 @@ export default function VansalesCaseStudy() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginTop: '64px' }} className="reveal">
+        <div className="resp-grid-3 reveal" style={{ gap: '16px', marginTop: '64px' }}>
           <div className="cs-insight-card"><div className="cs-insight-label">Speed</div><p className="cs-insight-body">Target: Under 90s per order. Previous system took 8 minutes.</p></div>
           <div className="cs-insight-card"><div className="cs-insight-label">Context</div><p className="cs-insight-body">70% of use in direct sun. Required high contrast mode.</p></div>
           <div className="cs-insight-card"><div className="cs-insight-label">Trust</div><p className="cs-insight-body">Required offline mode with reliable sync status.</p></div>
@@ -261,7 +260,7 @@ export default function VansalesCaseStudy() {
           <text x="825" y="70" fontFamily="sans-serif" fontSize="9" fill="white" textAnchor="middle">Synced ✓</text>
         </svg>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '64px' }} className="reveal">
+        <div className="resp-grid-2 reveal" style={{ gap: '16px', marginTop: '64px' }}>
           <div className="cs-insight-card"><div className="cs-insight-title">Large Touch Targets</div><p className="cs-insight-body">Min 56×56px targets for gloved hands and movement.</p></div>
           <div className="cs-insight-card"><div className="cs-insight-title">High-Contrast Mode</div><p className="cs-insight-body">Field mode with 7:1+ contrast ratios for sunlight.</p></div>
           <div className="cs-insight-card"><div className="cs-insight-title">Offline-First</div><p className="cs-insight-body">Local-first writes with persistent sync status indicators.</p></div>
