@@ -151,7 +151,7 @@ export default function VansalesCaseStudy() {
               <rect x="340" y="198" width="110" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" strokeWidth="1"/>
               <text x="395" y="218" fontFamily="sans-serif" fontSize="8.5" fill="#C4622D" textAnchor="middle">Spreadsheet</text>
               <text x="395" y="232" fontFamily="sans-serif" fontSize="8.5" fill="#C4622D" textAnchor="middle">reporting delays</text>
-              <line x1="340" y1="224" x2="268" y2="198" stroke="#E8C0A8" strokeWidth="1" stroke-dasharray="4 3"/>
+              <line x1="340" y1="224" x2="268" y2="198" stroke="#E8C0A8" strokeWidth="1" strokeDasharray="4 3"/>
               <rect x="160" y="280" width="140" height="52" rx="6" fill="#FEF3EC" stroke="#E8C0A8" strokeWidth="1"/>
               <text x="230" y="300" fontFamily="sans-serif" fontSize="8.5" fill="#C4622D" textAnchor="middle">Double data entry</text>
               <text x="230" y="314" fontFamily="sans-serif" fontSize="8.5" fill="#C4622D" textAnchor="middle">(field + back office)</text>
