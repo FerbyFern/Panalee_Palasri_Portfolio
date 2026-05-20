@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Mono, Bodoni_Moda, Syne } from "next/font/google";
+import { DM_Mono, Bodoni_Moda, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,9 +15,9 @@ const bodoniModa = Bodoni_Moda({
   display: "swap",
 });
 
-const syne = Syne({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bodoniModa.variable} ${syne.variable} ${dmMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${bodoniModa.variable} ${plusJakartaSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         {children}
       </body>
