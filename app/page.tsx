@@ -7,6 +7,7 @@ import Marquee from "../components/Marquee";
 import { CaseStudies } from "../components/CaseStudies";
 import About from "../components/About";
 import Experience from "../components/Experience";
+import Education from "../components/Education";
 import Process from "../components/Process";
 import SkillsGrid from "../components/SkillsGrid";
 import Testimonials from "../components/Testimonials";
@@ -76,6 +77,7 @@ export default function Home() {
       <CaseStudies />
       <About />
       <Experience />
+      <Education />
       <Process />
       <SkillsGrid />
       {/* <Testimonials /> */}
