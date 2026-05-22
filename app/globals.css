@@ -111,6 +111,15 @@ body::before {
   opacity: 0.6;
 }
 
+@media (max-width: 768px), (pointer: coarse) {
+  #cursor {
+    display: none !important;
+  }
+  body {
+    cursor: auto !important;
+  }
+}
+
 /* ── BUTTONS ─────────────────────────── */
 .btn-group {
   display: flex;
@@ -166,7 +175,8 @@ body::before {
 nav {
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 999;
   display: flex;
   justify-content: space-between;
@@ -190,6 +200,8 @@ nav.scrolled {
   color: var(--ink);
   text-decoration: none;
   text-transform: uppercase;
+  position: relative;
+  z-index: 1001;
 }
 
 .nav-links {
@@ -858,6 +870,10 @@ section {
   background: var(--white);
 }
 
+#education {
+  background: var(--cream);
+}
+
 .experience-cards,
 .education-cards {
   display: flex;
@@ -866,9 +882,16 @@ section {
   margin-top: 72px;
 }
 
-.exp-card,
-.edu-card {
+.exp-card {
   background: var(--cream);
+  padding: 40px 48px;
+  border-radius: 20px;
+  border: 1px solid rgba(216, 76, 125, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.edu-card {
+  background: var(--white);
   padding: 40px 48px;
   border-radius: 20px;
   border: 1px solid rgba(216, 76, 125, 0.08);
@@ -956,7 +979,7 @@ section {
 
 /* PROCESS */
 #process {
-  background: var(--cream);
+  background: var(--white);
 }
 
 #process .section-tag {
@@ -981,7 +1004,7 @@ section {
 }
 
 .process-step {
-  background: var(--white);
+  background: var(--cream);
   padding: 48px 36px;
   border-radius: 20px;
   border: 1px solid rgba(216, 76, 125, 0.08);
@@ -1035,7 +1058,7 @@ section {
 
 /* TOOLS GRID */
 #skills {
-  background: var(--white);
+  background: var(--cream);
 }
 
 .tools-grid {
@@ -1046,7 +1069,7 @@ section {
 }
 
 .tools-col {
-  background: var(--cream);
+  background: var(--white);
   padding: 40px 36px;
   border-radius: 20px;
   border: 1px solid rgba(216, 76, 125, 0.08);
@@ -1056,7 +1079,7 @@ section {
 .tools-col:hover {
   background: var(--white);
   border-color: var(--accent);
-  box-shadow: none;
+  box-shadow: 0 12px 30px rgba(216, 76, 125, 0.05);
 }
 
 .tools-col-title {
@@ -1492,10 +1515,11 @@ footer {
   }
 
   #contact {
-    padding: 80px 28px;
+    padding: 72px 28px;
   }
 
   footer {
+    padding: 48px 28px;
     flex-direction: column;
     gap: 12px;
     text-align: center;
@@ -1509,6 +1533,17 @@ footer {
 
   .process-steps {
     grid-template-columns: 1fr;
+  }
+
+  .work-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .process-step {
+    padding: 32px 24px !important;
   }
 }
 
@@ -2916,7 +2951,7 @@ footer {
 
 @media (max-width: 900px) {
   .case-studies {
-    padding: 80px 24px;
+    padding: 72px 28px;
   }
 
   .cs-header {
@@ -2954,7 +2989,7 @@ footer {
 
 @media (max-width: 900px) {
   .case-studies {
-    padding: 80px 24px;
+    padding: 72px 28px;
   }
 
   .cs-header {
@@ -3064,7 +3099,8 @@ footer {
     border: none;
     cursor: pointer;
     padding: 10px;
-    z-index: 1000;
+    z-index: 1002;
+    position: relative;
     margin-right: -10px;
   }
 
@@ -3082,6 +3118,7 @@ footer {
     height: 2px;
     background-color: var(--ink);
     position: absolute;
+    left: 0;
     transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
   }
 
@@ -3127,6 +3164,7 @@ footer {
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 998;
     padding: 80px 24px;
+    overflow-y: auto;
   }
 
   .nav-right.active {
@@ -3137,10 +3175,24 @@ footer {
     flex-direction: column;
     gap: 32px;
     text-align: center;
+    width: 100%;
   }
 
-  .nav-links a {
-    font-size: var(--fs-20);
+  .nav-links a,
+  .nav-download-toggle {
+    font-size: var(--fs-20) !important;
+    color: var(--ink-soft);
+  }
+
+  .nav-download {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-download-toggle svg {
+    width: 14px;
+    height: 14px;
   }
 
   .nav-download-menu {
@@ -3153,8 +3205,23 @@ footer {
     min-width: unset;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     align-items: center;
+  }
+
+  .nav-links .nav-download-menu a {
+    font-size: var(--fs-14) !important;
+    color: var(--ink-soft) !important;
+    opacity: 0.85;
+    justify-content: center;
+    padding: 6px 16px;
+    background: transparent !important;
+  }
+
+  .nav-links .nav-download-menu a:hover {
+    color: var(--accent) !important;
+    opacity: 1;
+    background: transparent !important;
   }
 }
 
