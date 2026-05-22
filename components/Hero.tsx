@@ -23,13 +23,13 @@ export default function Hero() {
           <div className="hero-stat-label">Years of practice</div>
         </div>
         <div className="hero-stat-block">
-          <div className="hero-stat-num">6+</div>
+          <div className="hero-stat-num">8+</div>
           <div className="hero-stat-label">Projects delivered</div>
         </div>
-        <div className="hero-stat-block">
+        {/* <div className="hero-stat-block">
           <div className="hero-stat-num">1st</div>
           <div className="hero-stat-label">Best Website Award</div>
-        </div>
+        </div> */}
       </div>
       <div className="hero-scroll">
         <div className="scroll-line"></div>

@@ -121,7 +121,7 @@ export const CaseStudies: React.FC = () => {
         <div>
           <div className="section-tag">Selected work</div>
           <h2 className="section-title">
-            Case Studies & Projects that<br />
+            Case Studies that<br />
             shaped my craft.
           </h2>
         </div>
