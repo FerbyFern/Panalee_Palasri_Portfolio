@@ -3,6 +3,13 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import CaseStudyHero, { CaseStudyPreview } from "../../../components/CaseStudyHero";
+import {
+  ShoppingCart, Package, Handshake, Timer,
+  Target, MessageSquare, Users, Search, Zap, Database,
+  ClipboardList, Plug, Monitor, Smartphone,
+  FolderKanban, Puzzle, Accessibility, RefreshCw, Microscope, Sprout,
+  Calendar, BookOpen, Map, User, Link2, BarChart2,
+} from 'lucide-react';
 
 const LeafyFullCaseStudy = () => {
   useEffect(() => {
@@ -477,22 +484,22 @@ const LeafyFullCaseStudy = () => {
           <div>
             <div className="impact-cards reveal">
               <div className="impact-card">
-                <div className="impact-icon">🛒</div>
+                <div className="impact-icon"><ShoppingCart size={22} strokeWidth={1.5} color="var(--green-mid)" /></div>
                 <div className="impact-title">Fragmented Cart Experience</div>
                 <div className="impact-desc">Multi-supplier orders with no grouped checkout flow led to confusion during the order confirmation journey.</div>
               </div>
               <div className="impact-card">
-                <div className="impact-icon">📦</div>
+                <div className="impact-icon"><Package size={22} strokeWidth={1.5} color="var(--green-mid)" /></div>
                 <div className="impact-title">SKU Complexity</div>
                 <div className="impact-desc">Plant products vary by size, species, and style — existing platforms had no structured model for managing these variants.</div>
               </div>
               <div className="impact-card">
-                <div className="impact-icon">🤝</div>
+                <div className="impact-icon"><Handshake size={22} strokeWidth={1.5} color="var(--green-mid)" /></div>
                 <div className="impact-title">Supplier Visibility</div>
                 <div className="impact-desc">Suppliers lacked a professional storefront to list products, manage pricing, and handle incoming orders efficiently.</div>
               </div>
               <div className="impact-card">
-                <div className="impact-icon">⏱️</div>
+                <div className="impact-icon"><Timer size={22} strokeWidth={1.5} color="var(--green-mid)" /></div>
                 <div className="impact-title">Team Alignment Gaps</div>
                 <div className="impact-desc">Mismatched schedules and technical errors between frontend and backend caused sprint delays and rework.</div>
               </div>
@@ -509,32 +516,32 @@ const LeafyFullCaseStudy = () => {
 
         <div className="research-grid reveal">
           <div className="r-card">
-            <div className="r-icon">🎯</div>
+            <div className="r-icon"><Target size={24} strokeWidth={1.5} color="var(--green-deep)" /></div>
             <div className="r-title">Research Goals</div>
             <div className="r-body">Understand how plant buyers discover and purchase products online, what friction they encounter in multi-seller scenarios, and what features suppliers need to manage their business effectively.</div>
           </div>
           <div className="r-card">
-            <div className="r-icon">🗣️</div>
+            <div className="r-icon"><MessageSquare size={24} strokeWidth={1.5} color="var(--green-deep)" /></div>
             <div className="r-title">Research Methods</div>
             <div className="r-body">User interviews with gardening enthusiasts, competitive analysis of platforms like Shopee and Lazada, heuristic evaluation, and collaborative UAT (User Acceptance Testing) from Product Backlog Items.</div>
           </div>
           <div className="r-card">
-            <div className="r-icon">👥</div>
+            <div className="r-icon"><Users size={24} strokeWidth={1.5} color="var(--green-deep)" /></div>
             <div className="r-title">Participants & Recruitment</div>
             <div className="r-body">Recruited participants from gardening communities. Two distinct personas targeted: everyday plant buyers (Somjai) and multi-product suppliers (Somchai), each with different workflows and mental models.</div>
           </div>
           <div className="r-card">
-            <div className="r-icon">🔍</div>
+            <div className="r-icon"><Search size={24} strokeWidth={1.5} color="var(--green-deep)" /></div>
             <div className="r-title">Competitive Analysis</div>
             <div className="r-body">Reviewed Shopee, Lazada, and specialist sites. Key gaps found: no plant-specific SKU variance management, no multi-supplier grouped cart, and no community gallery or garden designer discovery feature.</div>
           </div>
           <div className="r-card">
-            <div className="r-icon">⚡</div>
+            <div className="r-icon"><Zap size={24} strokeWidth={1.5} color="var(--green-deep)" /></div>
             <div className="r-title">Technical Research (POC)</div>
             <div className="r-body">Conducted Spike/POC research on Stock Keeping Units (SKU) — alphanumeric codes unique per retailer — to validate how to model product variance (size, style, species) in the database between item and item_details tables.</div>
           </div>
           <div className="r-card">
-            <div className="r-icon">🗄️</div>
+            <div className="r-icon"><Database size={24} strokeWidth={1.5} color="var(--green-deep)" /></div>
             <div className="r-title">Backend Discovery</div>
             <div className="r-body">Explored temporary cart management via MySQL Event Scheduler — a key finding that resolved how to handle session-based carts for non-authenticated users before they proceed to checkout.</div>
           </div>
@@ -552,10 +559,10 @@ const LeafyFullCaseStudy = () => {
         </div>
 
         <div className="artefact-row reveal">
-          <div className="artefact-pill">🗺️ User Journey Map</div>
-          <div className="artefact-pill">👤 User Personas</div>
-          <div className="artefact-pill">🔗 API Contract Map</div>
-          <div className="artefact-pill">📊 ERD Analysis</div>
+          <div className="artefact-pill" style={{display:'flex',alignItems:'center',gap:'6px',justifyContent:'center'}}><Map size={14} strokeWidth={1.5} color="var(--green-deep)" /> User Journey Map</div>
+          <div className="artefact-pill" style={{display:'flex',alignItems:'center',gap:'6px',justifyContent:'center'}}><User size={14} strokeWidth={1.5} color="var(--green-deep)" /> User Personas</div>
+          <div className="artefact-pill" style={{display:'flex',alignItems:'center',gap:'6px',justifyContent:'center'}}><Link2 size={14} strokeWidth={1.5} color="var(--green-deep)" /> API Contract Map</div>
+          <div className="artefact-pill" style={{display:'flex',alignItems:'center',gap:'6px',justifyContent:'center'}}><BarChart2 size={14} strokeWidth={1.5} color="var(--green-deep)" /> ERD Analysis</div>
         </div>
       </section>
 
@@ -813,28 +820,28 @@ const LeafyFullCaseStudy = () => {
           <div>
             <div className="test-methods">
               <div className="test-method">
-                <div className="test-method-icon">📋</div>
+                <div className="test-method-icon"><ClipboardList size={20} strokeWidth={1.5} color="rgba(255,255,255,0.75)" /></div>
                 <div>
                   <div className="test-method-title">Scenario-Based UAT</div>
                   <div className="test-method-body">Test cases were derived directly from PBI acceptance criteria. Testers were given realistic user stories (Somjai buying plants from multiple suppliers) and asked to complete the full checkout journey.</div>
                 </div>
               </div>
               <div className="test-method">
-                <div className="test-method-icon">🔌</div>
+                <div className="test-method-icon"><Plug size={20} strokeWidth={1.5} color="rgba(255,255,255,0.75)" /></div>
                 <div>
                   <div className="test-method-title">Backend API Testing (Postman)</div>
                   <div className="test-method-body">All API endpoints (Authentication, Users, Addresses, Payments, Products, Carts, Orders) were tested via Postman collections — validating JWT auth flows, status codes, and response payloads against the API document.</div>
                 </div>
               </div>
               <div className="test-method">
-                <div className="test-method-icon">🖥️</div>
+                <div className="test-method-icon"><Monitor size={20} strokeWidth={1.5} color="rgba(255,255,255,0.75)" /></div>
                 <div>
                   <div className="test-method-title">Frontend Demo Testing</div>
                   <div className="test-method-body">Live demo walkthroughs of the frontend were conducted with team members and the consultant, covering login, cart, checkout, supplier product creation, and order management flows.</div>
                 </div>
               </div>
               <div className="test-method">
-                <div className="test-method-icon">📱</div>
+                <div className="test-method-icon"><Smartphone size={20} strokeWidth={1.5} color="rgba(255,255,255,0.75)" /></div>
                 <div>
                   <div className="test-method-title">Responsive & Cross-Device</div>
                   <div className="test-method-body">Cart and Payment pages were tested on both desktop and mobile breakpoints, verifying that layout, touch targets, and checkout flows worked correctly on narrow screens.</div>
@@ -1002,21 +1009,21 @@ const LeafyFullCaseStudy = () => {
           <div className="reflection-col">
             <h3>✅ What Went Well</h3>
             <ul className="ref-list">
-              <li><span className="ref-icon">🎯</span>Leading the team through the full product lifecycle — from concept and research to a complete visual system and working prototype — gave me genuine end-to-end ownership and forced me to think beyond individual screens to the coherence of the whole product.</li>
-              <li><span className="ref-icon">🧩</span>The Figma component library built with Variants was the right investment. Having a modular, state-aware component set meant the team could build consistently across sprints without re-checking designs — and frontend could implement from one authoritative reference.</li>
-              <li><span className="ref-icon">♿</span>Committing to accessibility as a design principle — not an afterthought — shaped better decisions throughout. Pairing colour with icons and labels, sizing touch targets generously, and thinking about keyboard flows made the final product more robust for everyone.</li>
-              <li><span className="ref-icon">🔄</span>The role-based adaptive UI approach (one interface, multiple modes) was the right call architecturally. It kept the codebase and the design system leaner than building separate buyer and seller apps would have.</li>
-              <li><span className="ref-icon">📋</span>Release 3 was delivered at 100% completion — a direct result of tighter sprint planning and clearer acceptance criteria built from PBI stories.</li>
+              <li><span className="ref-icon"><Target size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Leading the team through the full product lifecycle — from concept and research to a complete visual system and working prototype — gave me genuine end-to-end ownership and forced me to think beyond individual screens to the coherence of the whole product.</li>
+              <li><span className="ref-icon"><Puzzle size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>The Figma component library built with Variants was the right investment. Having a modular, state-aware component set meant the team could build consistently across sprints without re-checking designs — and frontend could implement from one authoritative reference.</li>
+              <li><span className="ref-icon"><Accessibility size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Committing to accessibility as a design principle — not an afterthought — shaped better decisions throughout. Pairing colour with icons and labels, sizing touch targets generously, and thinking about keyboard flows made the final product more robust for everyone.</li>
+              <li><span className="ref-icon"><RefreshCw size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>The role-based adaptive UI approach (one interface, multiple modes) was the right call architecturally. It kept the codebase and the design system leaner than building separate buyer and seller apps would have.</li>
+              <li><span className="ref-icon"><ClipboardList size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Release 3 was delivered at 100% completion — a direct result of tighter sprint planning and clearer acceptance criteria built from PBI stories.</li>
             </ul>
           </div>
           <div className="reflection-col">
             <h3>⚠️ What I'd Do Differently</h3>
             <ul className="ref-list">
-              <li><span className="ref-icon">📅</span>Establish a shared team calendar and explicit availability agreements at the project kickoff. Sprint 2–4 of Release 4 suffered from misaligned schedules — a conversation about capacity at the start would have allowed us to scope more realistically.</li>
-              <li><span className="ref-icon">🤝</span>Run more frequent cross-discipline syncs between design and development. As PM, I could have structured a short weekly alignment ritual that caught API mismatches and component interpretation gaps before they caused rework.</li>
-              <li><span className="ref-icon">📱</span>Start from mobile-first wireframes rather than adapting desktop designs down. The responsive versions of Cart and Payment were retrofitted — starting narrow would have produced more considered mobile experiences from the start.</li>
-              <li><span className="ref-icon">🗂️</span>Scope the Gallery, Chat, and Notification features into a separate release from the outset. With Sprint 4 at 0/20, it's clear they were underestimated — better upfront scoping as PM would have protected the team from an undeliverable commitment.</li>
-              <li><span className="ref-icon">📖</span>Document the component library decisions more thoroughly. While the Figma Variants library was effective, we didn't write usage guidelines — which meant teammates occasionally used components in unintended configurations during handoff.</li>
+              <li><span className="ref-icon"><Calendar size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Establish a shared team calendar and explicit availability agreements at the project kickoff. Sprint 2–4 of Release 4 suffered from misaligned schedules — a conversation about capacity at the start would have allowed us to scope more realistically.</li>
+              <li><span className="ref-icon"><Handshake size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Run more frequent cross-discipline syncs between design and development. As PM, I could have structured a short weekly alignment ritual that caught API mismatches and component interpretation gaps before they caused rework.</li>
+              <li><span className="ref-icon"><Smartphone size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Start from mobile-first wireframes rather than adapting desktop designs down. The responsive versions of Cart and Payment were retrofitted — starting narrow would have produced more considered mobile experiences from the start.</li>
+              <li><span className="ref-icon"><FolderKanban size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Scope the Gallery, Chat, and Notification features into a separate release from the outset. With Sprint 4 at 0/20, it's clear they were underestimated — better upfront scoping as PM would have protected the team from an undeliverable commitment.</li>
+              <li><span className="ref-icon"><BookOpen size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Document the component library decisions more thoroughly. While the Figma Variants library was effective, we didn't write usage guidelines — which meant teammates occasionally used components in unintended configurations during handoff.</li>
             </ul>
           </div>
         </div>
@@ -1024,32 +1031,32 @@ const LeafyFullCaseStudy = () => {
         <h3 style={{color:'var(--green-pale)',fontFamily:'var(--font-display), serif',fontSize:'1rem',marginBottom:'20px',letterSpacing:'0.04em'}}>Key Personal Learnings</h3>
         <div className="learnings-grid reveal">
           <div className="learning-card">
-            <div className="learning-icon">🗂️</div>
+            <div className="learning-icon"><FolderKanban size={22} strokeWidth={1.5} color="rgba(255,255,255,0.5)" /></div>
             <div className="learning-title">PM Work is Design Work</div>
             <div className="learning-body">Managing the project — sprint planning, team alignment, scope decisions — was itself a design problem. The skills that made me a good UX designer (systems thinking, user empathy, iteration) directly translated into being a more effective project manager.</div>
           </div>
           <div className="learning-card">
-            <div className="learning-icon">🧩</div>
+            <div className="learning-icon"><Puzzle size={22} strokeWidth={1.5} color="rgba(255,255,255,0.5)" /></div>
             <div className="learning-title">Components Are a Communication Tool</div>
             <div className="learning-body">Building the Figma Variants library taught me that a component isn't just a UI element — it's a shared language between design and development. The clearer and more consistent the library, the fewer alignment conversations the team needed mid-sprint.</div>
           </div>
           <div className="learning-card">
-            <div className="learning-icon">♿</div>
+            <div className="learning-icon"><Accessibility size={22} strokeWidth={1.5} color="rgba(255,255,255,0.5)" /></div>
             <div className="learning-title">Accessibility Sharpens Design Thinking</div>
             <div className="learning-body">Designing with accessibility in mind — sufficient contrast, touch targets, labels independent of colour — consistently led to cleaner, more legible interfaces. It wasn't a constraint; it was a quality bar that made everything better for everyone.</div>
           </div>
           <div className="learning-card">
-            <div className="learning-icon">🔄</div>
+            <div className="learning-icon"><RefreshCw size={22} strokeWidth={1.5} color="rgba(255,255,255,0.5)" /></div>
             <div className="learning-title">Role-Based Design Requires System Thinking</div>
             <div className="learning-body">Designing an interface that adapts across four user roles forced me to think at the system level, not the screen level. Decisions about navigation, information hierarchy, and component states had to work across all role contexts — a valuable constraint that elevated the design quality.</div>
           </div>
           <div className="learning-card">
-            <div className="learning-icon">🔬</div>
+            <div className="learning-icon"><Microscope size={22} strokeWidth={1.5} color="rgba(255,255,255,0.5)" /></div>
             <div className="learning-title">Research Shapes Architecture</div>
             <div className="learning-body">The POC on SKU management and the temporary cart discovery weren't just technical exercises — they were design research that informed database modelling and what the UI needed to surface. Good UX designers ask questions that shape the system underneath, not just the surface on top.</div>
           </div>
           <div className="learning-card">
-            <div className="learning-icon">🌱</div>
+            <div className="learning-icon"><Sprout size={22} strokeWidth={1.5} color="rgba(255,255,255,0.5)" /></div>
             <div className="learning-title">Lifecycle Ownership Changes Perspective</div>
             <div className="learning-body">Leading from concept to prototype — across nine months and four releases — fundamentally changed how I think about design decisions. When you're responsible for the whole product, every screen choice feels connected to something larger, and that accountability produces better, more considered work.</div>
           </div>

@@ -1140,11 +1140,15 @@ section {
 
 .testimonial-quote-icon {
   font-family: var(--font-display), serif;
-  font-size: var(--fs-56);
+  font-size: var(--fs-36);
   font-weight: 300;
   color: var(--accent-light);
-  line-height: .5;
+  line-height: 1;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+  opacity: 0.35;
 }
 
 .testimonial-text {
@@ -2522,6 +2526,10 @@ footer {
 .cs-nda-icon {
   font-size: var(--fs-20);
   flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
 }
 
 .cs-nda-title {

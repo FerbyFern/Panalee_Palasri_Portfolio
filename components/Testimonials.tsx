@@ -1,4 +1,5 @@
 import React from 'react';
+import { Quote } from 'lucide-react';
 
 const Testimonials: React.FC = () => {
   const quotes = [
@@ -30,7 +31,7 @@ const Testimonials: React.FC = () => {
       <div className="testimonial-grid reveal">
         {quotes.map((quote, index) => (
           <div key={index} className="testimonial-card">
-            <div className="testimonial-quote-icon">"</div>
+            <div className="testimonial-quote-icon"><Quote size={22} strokeWidth={1.5} /></div>
             <p className="testimonial-text">{quote.text}</p>
             <div className="testimonial-author">
               <div className="testimonial-avatar">{quote.initials}</div>

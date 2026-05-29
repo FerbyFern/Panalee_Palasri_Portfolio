@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { Lock } from "lucide-react";
 import CaseStudyHero, { CaseStudyPreview } from "../../../components/CaseStudyHero";
 
 export default function CESCaseStudy() {
@@ -78,7 +79,7 @@ export default function CESCaseStudy() {
       {/* NDA NOTICE */}
       <section className="cs-section" style={{ background: 'var(--white)', paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="cs-nda reveal">
-          <span className="cs-nda-icon">🔒</span>
+          <span className="cs-nda-icon"><Lock size={20} strokeWidth={1.5} /></span>
           <div>
             <div className="cs-nda-title">NDA Notice</div>
             <p className="cs-nda-text">

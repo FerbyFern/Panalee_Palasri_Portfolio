@@ -1,19 +1,20 @@
 import React from 'react';
+import { Trophy, Award, GraduationCap } from 'lucide-react';
 
 const Achievements: React.FC = () => {
   const items = [
     {
-      icon: "★",
+      icon: <Trophy size={28} strokeWidth={1.5} />,
       title: "National Team Athlete — Thailand",
       sub: "Modern Pentathlon (Fencing, Swimming, Running, Riding, Shooting) · Jul 2017–Dec 2019 & Oct 2022–Mar 2023"
     },
     {
-      icon: "①",
+      icon: <Award size={28} strokeWidth={1.5} />,
       title: "1st Place · Best Website Award",
       sub: "Hello World Dolphin 2020 Faculty Event Competition · KMUTT"
     },
     {
-      icon: "◆",
+      icon: <GraduationCap size={28} strokeWidth={1.5} />,
       title: "Petchra Prajomklao Scholarship",
       sub: "Full Athletic Scholarship · King Mongkut's University of Technology Thonburi · 2020–2024"
     }

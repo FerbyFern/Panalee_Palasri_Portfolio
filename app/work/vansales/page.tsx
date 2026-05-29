@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { Lock } from "lucide-react";
 
 export default function VansalesCaseStudy() {
   useEffect(() => {
@@ -102,7 +103,7 @@ export default function VansalesCaseStudy() {
       <section style={{ background: 'var(--white)', padding: '60px 0' }}>
         <div className="cs-section" style={{ padding: '0', maxWidth: '900px' }}>
           <div className="cs-nda reveal" style={{ background: '#1E3A6E' }}>
-            <span className="cs-nda-icon">🔒</span>
+            <span className="cs-nda-icon"><Lock size={20} strokeWidth={1.5} /></span>
             <div>
               <div className="cs-nda-title">NDA Notice</div>
               <p className="cs-nda-text">

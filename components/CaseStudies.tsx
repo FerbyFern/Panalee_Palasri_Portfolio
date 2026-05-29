@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 
 interface CaseStudyItem {
   id: string;
@@ -186,15 +187,7 @@ export const CaseStudies: React.FC = () => {
                   </div>
                 </div>
                 <div className="cs-arrow">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path
-                      d="M3 13L13 3M13 3H5M13 3V11"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <ArrowUpRight size={16} strokeWidth={1.5} />
                 </div>
               </div>
             </Link>
