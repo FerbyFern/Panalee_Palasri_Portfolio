@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { ArrowLeft, ArrowRight, MoveRight } from "lucide-react";
 import CaseStudyHero, { CaseStudyPreview } from "../../../components/CaseStudyHero";
 
 export default function PMSFCaseStudy() {
@@ -35,8 +36,8 @@ export default function PMSFCaseStudy() {
   return (
     <div className="cs-page">
       <nav className="cs-nav">
-        <Link href="/" className="cs-back">
-          ← Back to Portfolio
+        <Link href="/" className="cs-back" style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <ArrowLeft size={14} strokeWidth={1.5} /> Back to Portfolio
         </Link>
         <div style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)' }}>
           Case Study 03
@@ -235,7 +236,7 @@ export default function PMSFCaseStudy() {
                 <div className="cs-change-label before">Before</div>
                 <p>{item.before}</p>
               </div>
-              <div className="cs-change-arrow">→</div>
+              <div className="cs-change-arrow"><MoveRight size={18} strokeWidth={1.2} /></div>
               <div className="cs-change-after">
                 <div className="cs-change-label after">After</div>
                 <p>{item.after}</p>
@@ -272,7 +273,7 @@ export default function PMSFCaseStudy() {
       <div className="cs-next">
         <div className="cs-next-label">Next Project</div>
         <Link href="/work/ces" className="cs-next-link">
-          CES — Gold Trading System <span>→</span>
+          CES — Gold Trading System <ArrowRight size={16} strokeWidth={1.5} style={{flexShrink:0}} />
         </Link>
       </div>
 

@@ -9,6 +9,7 @@ import {
   ClipboardList, Plug, Monitor, Smartphone,
   FolderKanban, Puzzle, Accessibility, RefreshCw, Microscope, Sprout,
   Calendar, BookOpen, Map, User, Link2, BarChart2,
+  CheckCircle2, AlertTriangle, ArrowLeft, ArrowRight,
 } from 'lucide-react';
 
 const LeafyFullCaseStudy = () => {
@@ -361,7 +362,7 @@ const LeafyFullCaseStudy = () => {
       <div className="progress-bar"><div className="progress-fill" id="progress"></div></div>
 
       <nav className="cs-nav">
-        <Link href="/" className="cs-back">← Back to Portfolio</Link>
+        <Link href="/" className="cs-back" style={{display:'flex',alignItems:'center',gap:'8px'}}><ArrowLeft size={14} strokeWidth={1.5} /> Back to Portfolio</Link>
         <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
           Leafy — Case Study
         </span>
@@ -853,19 +854,19 @@ const LeafyFullCaseStudy = () => {
           <div>
             <div className="findings-list">
               <div className="finding-card positive">
-                <div className="finding-label">✅ What Worked Well</div>
+                <div className="finding-label" style={{display:'flex',alignItems:'center',gap:'6px'}}><CheckCircle2 size={14} strokeWidth={1.5} /> What Worked Well</div>
                 <div className="finding-text">The grouped cart UI (items sorted by shop) was immediately understood by testers — they could easily identify which items were from which supplier and select only certain shops for checkout.</div>
               </div>
               <div className="finding-card positive">
-                <div className="finding-label">✅ What Worked Well</div>
+                <div className="finding-label" style={{display:'flex',alignItems:'center',gap:'6px'}}><CheckCircle2 size={14} strokeWidth={1.5} /> What Worked Well</div>
                 <div className="finding-text">Order status color-coding (Pending = orange, In Progress = blue, Delivered = green, Cancelled = red) reduced cognitive load — testers instantly understood order states without reading labels.</div>
               </div>
               <div className="finding-card negative">
-                <div className="finding-label">⚠️ Issue Found</div>
+                <div className="finding-label" style={{display:'flex',alignItems:'center',gap:'6px'}}><AlertTriangle size={14} strokeWidth={1.5} /> Issue Found</div>
                 <div className="finding-text">Sprint 2–4 of Release 4 were significantly incomplete (1/8, 1/14, 0/20) — Gallery, Chat, and Notification features could not be tested. This was partly due to misaligned schedules between team members.</div>
               </div>
               <div className="finding-card neutral">
-                <div className="finding-label">🔄 Adjusted from Testing</div>
+                <div className="finding-label" style={{display:'flex',alignItems:'center',gap:'6px'}}><RefreshCw size={14} strokeWidth={1.5} /> Adjusted from Testing</div>
                 <div className="finding-text">The SKU variant display in the cart was initially showing only the style code (XX231). After testing, we updated it to show a human-readable Variation label (e.g. "Yellow, Red") for clearer identification.</div>
               </div>
             </div>
@@ -1007,7 +1008,7 @@ const LeafyFullCaseStudy = () => {
 
         <div className="reflection-cols reveal">
           <div className="reflection-col">
-            <h3>✅ What Went Well</h3>
+            <h3 style={{display:'flex',alignItems:'center',gap:'8px'}}><CheckCircle2 size={18} strokeWidth={1.5} color="rgba(255,255,255,0.7)" /> What Went Well</h3>
             <ul className="ref-list">
               <li><span className="ref-icon"><Target size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Leading the team through the full product lifecycle — from concept and research to a complete visual system and working prototype — gave me genuine end-to-end ownership and forced me to think beyond individual screens to the coherence of the whole product.</li>
               <li><span className="ref-icon"><Puzzle size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>The Figma component library built with Variants was the right investment. Having a modular, state-aware component set meant the team could build consistently across sprints without re-checking designs — and frontend could implement from one authoritative reference.</li>
@@ -1017,7 +1018,7 @@ const LeafyFullCaseStudy = () => {
             </ul>
           </div>
           <div className="reflection-col">
-            <h3>⚠️ What I'd Do Differently</h3>
+            <h3 style={{display:'flex',alignItems:'center',gap:'8px'}}><AlertTriangle size={18} strokeWidth={1.5} color="rgba(255,255,255,0.7)" /> What I&apos;d Do Differently</h3>
             <ul className="ref-list">
               <li><span className="ref-icon"><Calendar size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Establish a shared team calendar and explicit availability agreements at the project kickoff. Sprint 2–4 of Release 4 suffered from misaligned schedules — a conversation about capacity at the start would have allowed us to scope more realistically.</li>
               <li><span className="ref-icon"><Handshake size={16} strokeWidth={1.5} color="rgba(255,255,255,0.65)" /></span>Run more frequent cross-discipline syncs between design and development. As PM, I could have structured a short weekly alignment ritual that caught API mismatches and component interpretation gaps before they caused rework.</li>
@@ -1090,7 +1091,7 @@ const LeafyFullCaseStudy = () => {
       <div className="cs-next">
         <div className="cs-next-label">Next Project</div>
         <Link href="/work/ces" className="cs-next-link">
-          CES — Enterprise Gold Shop <span>→</span>
+          CES — Enterprise Gold Shop <ArrowRight size={16} strokeWidth={1.5} style={{flexShrink:0}} />
         </Link>
       </div>
 

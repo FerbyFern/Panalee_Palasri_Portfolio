@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { Lock } from "lucide-react";
+import { Lock, ArrowLeft, ArrowRight } from "lucide-react";
 import CaseStudyHero, { CaseStudyPreview } from "../../../components/CaseStudyHero";
 
 export default function CESCaseStudy() {
@@ -36,7 +36,7 @@ export default function CESCaseStudy() {
   return (
     <div className="cs-page">
       <nav className="cs-nav">
-        <Link href="/" className="cs-back">← Back to Portfolio</Link>
+        <Link href="/" className="cs-back" style={{display:'flex',alignItems:'center',gap:'8px'}}><ArrowLeft size={14} strokeWidth={1.5} /> Back to Portfolio</Link>
         <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)' }}>
           CES Gold Shop — Case Study
         </span>
@@ -309,7 +309,7 @@ export default function CESCaseStudy() {
       <div className="cs-next">
         <div className="cs-next-label">Next Project</div>
         <Link href="/work/vansales" className="cs-next-link">
-          Vansales — Field Sales App <span>→</span>
+          Vansales — Field Sales App <ArrowRight size={16} strokeWidth={1.5} style={{flexShrink:0}} />
         </Link>
       </div>
 

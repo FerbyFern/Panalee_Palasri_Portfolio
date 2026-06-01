@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { Lock } from "lucide-react";
+import { Lock, ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function VansalesCaseStudy() {
   useEffect(() => {
@@ -35,9 +35,9 @@ export default function VansalesCaseStudy() {
   return (
     <div className="cs-page">
       <nav className="cs-nav">
-        <Link href="/" className="cs-back">
-          ← Back to Portfolio
-        </Link>
+          <Link href="/" className="cs-back" style={{display:'flex',alignItems:'center',gap:'8px'}}>
+            <ArrowLeft size={14} strokeWidth={1.5} /> Back to Portfolio
+          </Link>
         <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: 'var(--fs-11)', color: 'var(--ink-muted)' }}>
           Vansales — Case Study
         </span>
@@ -287,7 +287,7 @@ export default function VansalesCaseStudy() {
       <div className="cs-next">
         <div className="cs-next-label">Next Project</div>
         <Link href="/work/leafy" className="cs-next-link">
-          Leafy — Plant E-commerce <span>→</span>
+          Leafy — Plant E-commerce <ArrowRight size={16} strokeWidth={1.5} style={{flexShrink:0}} />
         </Link>
       </div>
 
